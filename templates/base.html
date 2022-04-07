@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">-->
+    <!-- commonのCSS読み込み -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='common/stylesheet.css') }}">
+    <!-- BootstrapのCSS読み込み -->
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <title>Login</title>
+  </head>
+  <body>
+      {% block context %}
+      {% endblock %}
+      <p>test{{ user_id }}</p>
+  </body>
+</html>
+
