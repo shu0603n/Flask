@@ -9,6 +9,9 @@ https://www.postgresql.jp/download
 ■git
 https://gitforwindows.org/
 
+■HelokuCLI
+https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
+
 ■Visual Studio Code
 https://azure.microsoft.com/ja-jp/products/visual-studio-code/
 
