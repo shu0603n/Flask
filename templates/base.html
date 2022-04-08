@@ -1,21 +1,19 @@
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">-->
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>サインインページ</title>
     <!-- commonのCSS読み込み -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='common/stylesheet.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='common/css/style.css') }}">
     <!-- BootstrapのCSS読み込み -->
-    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
-    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
-    <title>Login</title>
-  </head>
-  <body>
+    <script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+</head>
       {% block context %}
       {% endblock %}
-      <p>test{{ user_id }}</p>
-  </body>
 </html>
 

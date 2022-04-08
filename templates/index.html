@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block context %}
+<body class="text-center">
+<main class="form-signin">
+  <form name="login_form" action="/login" method="POST">
+    <img class="mb-4" src="{{ url_for('static',filename='common/img/QSystem_logo.png') }}">
+    <h1 class="h3 mb-3 fw-normal">サインインしてください</h1>
+    <p>{{ message }}</p>
+    <div class="form-floating">
+      <input type="id" class="form-control" id="floatingInput" name="user_id" value='{{ user_id }}'>
+      <label for="floatingInput">ユーザーID</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="パスワード" name="password">
+      <label for="floatingPassword">パスワード</label>
+    </div>
+
+    <div class="form-check mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> 状態を記憶する
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">サインイン</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+  </form>
+</main>
+
+<script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{% endblock %}
