@@ -8,9 +8,16 @@ import psycopg2
 #コマンドプロンプトで下記を実行。
 """
 set FLASK_APP=app
-set FLASK_WNV=development
+set FLASK_ENV=development
 flask run
 """
+#停止方法
+"""
+コンソールで[Ctrl + C]
+
+再度flask runで起動できる
+"""
+
 
 app = Flask(__name__)
 
@@ -45,20 +52,44 @@ def login():
         return render_template('index.html',user_id=user_id,message=message)
     else:
         print('パスワードが一致しました')
-        return render_template('menu.html',user_id=user_id)
-
-@app.route("/menu")
-def menu():
-    user_id='sss'
-    return render_template('menu.html',user_id=user_id)
-
-@app.route("/index")
-def signin():
-    return render_template('index.html')
+        return render_template('dashboard.html',user_id=user_id)
 
 @app.route("/dashboard")
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route("/kokyaku")
+def kokyaku():
+    return render_template('kokyaku.html')
+
+@app.route("/kokyakuList")
+def kokyakuList():
+    return render_template('kokyakuList.html')
+
+@app.route("/yoyaku")
+def yoyaku():
+    return render_template('yoyaku.html')
+
+@app.route("/uriage")
+def uriage():
+    return render_template('uriage.html')
+
+@app.route("/seisan")
+def seisan():
+    return render_template('seisan.html')
+
+@app.route("/user")
+def user():
+    return render_template('user.html')
+
+@app.route("/menu")
+def menu():
+    user_id='sss'
+    return render_template('dashboard.html',user_id=user_id)
+
+@app.route("/index")
+def signin():
+    return render_template('index.html')
 
 @app.route("/test/<str>")
 def test(str):

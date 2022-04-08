@@ -4,7 +4,7 @@
 <main class="form-signin">
   <form name="login_form" action="/login" method="POST">
     <img class="mb-4" src="{{ url_for('static',filename='common/img/QSystem_logo.png') }}">
-    <h1 class="h3 mb-3 fw-normal">サインインしてください</h1>
+    <h1 class="h4 mb-3 fw-normal">サインインしてください</h1>
     <p>{{ message }}</p>
     <div class="form-floating">
       <input type="id" class="form-control" id="floatingInput" name="user_id" value='{{ user_id }}'>
@@ -21,6 +21,7 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">サインイン</button>
+    <a href="/">新規登録</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
   </form>
 </main>
