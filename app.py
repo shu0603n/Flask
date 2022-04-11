@@ -1,4 +1,3 @@
-from cmath import nan
 from flask import Flask,request
 from flask import render_template
 from pandas import isnull
