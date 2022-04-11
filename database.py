@@ -21,7 +21,7 @@ class DataBase:
 
         # 本番環境
         DATABASE_URL = os.environ['DATABASE_URL']
-        con = psycopg2.connect(DATABASE_URL, sslmode='require')
+        # con = psycopg2.connect(DATABASE_URL, sslmode='require')
 
         # # LOCAL環境
         # host     = "localhost"
@@ -30,6 +30,7 @@ class DataBase:
         # user     = "postgres"
         # password = "postgres"
         # con = psycopg2.connect("host=" + host + " port=" + port + " dbname=" + dbname + " user=" + user + " password=" + password )
+        con = psycopg2.connect('postgres://ifnxktkdxwankq:07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674@ec2-34-207-12-160.compute-1.amazonaws.com:5432/d360nfch4hl8mt')
 
         print("DB接続を開始しました")
         return con
