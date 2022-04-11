@@ -1,6 +1,7 @@
 from flask import Flask,request
 from flask import render_template
 from pandas import isnull
+
 import psycopg2
 import database
 # web: gunicorn apl_name : app --log-file -
@@ -10,6 +11,10 @@ import database
 set FLASK_APP=app
 set FLASK_ENV=development
 flask run
+
+$env:FLASK_APP = "app"
+$env:FLASK_ENV = "development"
+$flask run
 """
 #停止方法
 """
@@ -17,10 +22,24 @@ flask run
 
 再度flask runで起動できる
 """
+"""
+#SQLsetuzoku
 
+heroku pg:psql postgresql-silhouetted-72488 --app q-sys-tem
+"""
 
+# 方法1
 app = Flask(__name__)
-
+"""
+$ flask run
+"""
+# 方法2
+#if __name__ == "__main__":
+#    app = Flask(__name__)
+#    app.run(debug=True)
+"""
+$ python app.py
+"""
 @app.route('/',methods=["GET", "POST"])
 def index():
     return render_template('index.html')
