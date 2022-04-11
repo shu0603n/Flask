@@ -41,7 +41,7 @@ def login():
     password = request.form.get("password")
 
     #SQL文にバインド変数を代入する。
-    sql =  "select * from u_password WHERE user_id = '%s'  AND password = '%s'" % (user_id, password)
+    sql =  "select * from user_pass WHERE user_id = '%s'  AND password = '%s'" % (user_id, password)
 
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
