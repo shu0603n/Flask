@@ -3,7 +3,7 @@ from flask import render_template
 from pandas import isnull
 import psycopg2
 import database
-
+# web: gunicorn apl_name : app --log-file -
 #実行方法
 #コマンドプロンプトで下記を実行。
 """
