@@ -1,6 +1,10 @@
 ■QSystemリポジトリ
 https://github.com/shu0603n/QSystem.git
 
+git add . 
+git commit -m 'message'
+git push origin master
+
 ■init
 git init
 ディレクトリにリポジトリを作成.
