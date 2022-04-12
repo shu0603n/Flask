@@ -1,45 +1,47 @@
 from flask import Flask,request
 from flask import render_template
 from pandas import isnull
-
 import psycopg2
 import database
-# web: gunicorn apl_name : app --log-file -
+import sqlFunc
+
 #実行方法
 #コマンドプロンプトで下記を実行。
 """
 set FLASK_APP=app
 set FLASK_ENV=development
 flask run
-
-$env:FLASK_APP = "app"
-$env:FLASK_ENV = "development"
-$flask run
 """
+
 #停止方法
 """
-コンソールで[Ctrl + C]
-
-再度flask runで起動できる
-"""
-"""
-#SQLsetuzoku
-
-heroku pg:psql postgresql-silhouetted-72488 --app q-sys-tem
+[Ctrl + C]で停止
+再度flask runで起動
 """
 
-# 方法1
+#SQL接続
+"""
+heroku pg：psql postgresql-silhouetted-72488 --app q-system-origin
+"""
+
+#Gitデプロイ方法
+'''
+git add . 
+git commit -m 'message'
+git push origin master
+'''
+
+#herokuデプロイ方法
+'''
+git add . 
+git commit -m 'message'
+git push heroku master
+'''
+
 app = Flask(__name__)
-"""
-$ flask run
-"""
-# 方法2
-#if __name__ == "__main__":
-#    app = Flask(__name__)
-#    app.run(debug=True)
-"""
-$ python app.py
-"""
+
+query =sqlFunc.SqlFunc
+
 @app.route('/',methods=["GET", "POST"])
 def index():
     return render_template('index.html')
@@ -60,7 +62,7 @@ def login():
     password = request.form.get("password")
 
     #SQL文にバインド変数を代入する。
-    sql =  "select * from user_pass WHERE user_id = '%s'  AND password = '%s'" % (user_id, password)
+    sql = query.selectPassword(user_id, password)
 
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
@@ -78,15 +80,20 @@ def login():
 
 @app.route("/dashboard")
 def dashboard():
+
     return render_template('dashboard.html')
+
+@app.route("/kokyakuList")
+def kokyakuList():
+    return render_template('kokyakuList.html' , kokyakuList = res)
 
 @app.route("/kokyaku")
 def kokyaku():
     return render_template('kokyaku.html')
 
-@app.route("/kokyakuList")
-def kokyakuList():
-    return render_template('kokyakuList.html')
+@app.route("/kokyakuInsert")
+def kokyakuInsert():
+    return render_template('kokyakuInsert.html')
 
 @app.route("/yoyaku")
 def yoyaku():
@@ -100,9 +107,35 @@ def uriage():
 def seisan():
     return render_template('seisan.html')
 
+@app.route("/userList")
+def userList():
+
+    #DataBaseクラスをインスタンス化
+    db = database.DataBase
+
+    #DBの接続情報を取得
+    con = db.connect()
+
+    #画面から送られてきたパラメータを変数に代入
+    
+    #SQL文にバインド変数を代入する。
+    sql = query.selectUserList()
+
+    #SQLを実行し戻り値として結果を受け取る
+    res = db.select_execute(con, sql)
+
+    #DB接続を終了
+    con.close()
+
+    return render_template('userList.html')
+    
 @app.route("/user")
 def user():
     return render_template('user.html')
+
+@app.route("/userInsert")
+def userInsert():
+    return render_template('userInsert.html')
 
 @app.route("/menu")
 def menu():
