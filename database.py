@@ -1,7 +1,7 @@
 import psycopg2
 import os
 
-from sqlalchemy import true
+from sqlalchemy import false, true
 class DataBase:
 
     #DB情報取得
@@ -10,16 +10,13 @@ class DataBase:
         # 本番環境
 
 
-        DBFLG = true
+   
 
-        if DBFLG:
-            # 本番環境
-            POSTGRES_URL ='postgres ：// ifnxktkdxwankq ：07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674 @ ec2-34-207-12-160.compute-1.amazonaws.com：5432 / d360nfch4hl8mt'
-        else:
-            # LOCAL環境
-            POSTGRES_URL = 'host=localhost port=5432 dbname=PGLOCAL user=postgres password=postgres'
-        
-        con = psycopg2.connect('POSTGRES_URL')
+        # 本番環境
+        con = psycopg2.connect('postgres ：// ifnxktkdxwankq ：07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674 @ ec2-34-207-12-160.compute-1.amazonaws.com：5432 / d360nfch4hl8mt')
+
+        # # LOCAL環境
+        # con = psycopg2.connect('host=localhost port=5432 dbname=PGLOCAL user=postgres password=postgres')
 
         print("DB接続を開始しました")
         return con

@@ -1,3 +1,8 @@
 heroku login
-cd QSystem
-heroku create
+git remote -v
+git remote set-url heroku https://git.heroku.com/q-system-origin.git
+git add .
+git commit -m'message'
+git push heroku master
+
+heroku logs --tail
