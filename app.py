@@ -91,7 +91,7 @@ def dashboard():
 
 @app.route("/kokyakuList")
 def kokyakuList():
-    return render_template('kokyakuList.html' , kokyakuList = res)
+    return render_template('kokyakuList.html' )
 
 @app.route("/kokyaku")
 def kokyaku():
