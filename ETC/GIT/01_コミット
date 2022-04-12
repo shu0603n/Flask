@@ -1,7 +1,7 @@
 git add origin master
 git add .                  
 git commit -m "メッセージを記載"
-git  push origin master  
+git push origin master  
 
 git fetch --all
-git branch -avv
+git heroku -avv
