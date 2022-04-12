@@ -37,6 +37,12 @@ git add .
 git commit -m 'message'
 git push heroku master
 '''
+# gunicorn設定
+# どっちだっけ・・・
+'''
+web: gunicorn app:app
+web: python app.py
+'''
 
 app = Flask(__name__)
 
