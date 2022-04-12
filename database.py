@@ -1,7 +1,6 @@
 import psycopg2
 import os
 
-from sqlalchemy import false, true
 class DataBase:
 
     #DB情報取得
