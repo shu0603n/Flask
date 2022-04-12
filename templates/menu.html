@@ -32,42 +32,58 @@
     </div>
   </header> -->
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow">
+    <!-- <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+          <li><a href="#contents1">コンテンツ1</a></li>
+          <li><a href="#contents2">コンテンツ2</a></li>
+          <li><a href="#contents3">コンテンツ3</a></li>
+          <li><a href="#contents4">コンテンツ4</a></li>
+          <li><a href="#contents5">コンテンツ5</a></li>
+      </ul>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow navbar-collapse bs-navbar-collapse ">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/dashboard">Q-System</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/dashboard">Q-System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-header">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">ホーム</a>
+          <ul class="navbar-nav d-sm-none d-mb-none d-lg-none mb-md-0 ">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/dashboard">ダッシュボード</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">リンク</a>
+              <a class="nav-link" href="/kokyakuList">顧客管理</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">無効</a>
-            </li> -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ドロップダウン</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="/kokyakuList">顧客管理</a>
-                <a class="dropdown-item" href="/yoyaku">予約管理</a>
-                <a class="dropdown-item" href="/uriage">売上管理</a>
-                <a class="dropdown-item" href="/userList">ユーザー管理</a>
-              </div>
+              <a class="nav-link" href="/yoyaku">予約管理</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/uriage">売上管理</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/userList">ユーザー管理</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">サインアウト</a>
             </li>
           </ul>
-          <form class="d-flex">
+          <!-- <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="検索..." aria-label="検索...">
             <button class="btn btn-outline-success flex-shrink-0" type="submit">検索</button>
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
+    <script>
+      $(document).ready(function () {
+        $(".navbar-nav li a").click(function(event) {
+          $(".navbar-collapse").collapse('hide');
+        });
+      });
+    </script>
   </header>
-
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -105,7 +121,7 @@
             </li>
           </ul>
 
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>保存されたレポート</span>
             <a class="d-flex align-items-center text-muted" href="#">
               <span data-feather="plus-circle"></span>
@@ -136,7 +152,7 @@
                 年末販売
               </a>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </nav>
 
