@@ -11,7 +11,6 @@ class DataBase:
         # LOCAL環境
         # con = psycopg2.connect('host=localhost port=5432 dbname=PGLOCAL user=postgres password=postgres')
 
-        print("DB接続を開始しました")
         return con
 
     #SELECTを実行

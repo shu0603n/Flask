@@ -24,7 +24,7 @@
           <h6 class="my-0">{{ rireki['start_dt'] }}</h6>
           <small class="text-muted">{{ rireki['memo'] }}</small>
         </div>
-        <span class="text-muted">{{ rireki['menu_kg'] }}</span>
+        <span class="text-muted">{{ rireki['menu_kg'] }}円</span>
       </li>
       {% endfor %}
 
@@ -38,8 +38,8 @@
       {% endif %}
       
       <li class="list-group-item d-flex justify-content-between">
-        <span>合計 (円)</span>
-        <strong>{{ sum_kg }}</strong>
+        <span>合計</span>
+        <strong>{{ sum_kg }}円</strong>
       </li>
     </ul>
   </div>
