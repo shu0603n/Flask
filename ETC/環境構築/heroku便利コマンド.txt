@@ -1,3 +1,6 @@
+heroku export FLASK_APP=app.py
+heroku run flask
+
 # DBの作り直し => 確認のためにアプリ名を聞かれるので入力してENTER
 heroku pg:reset DATABASE
 (heroku rake db:migrate:redo STEP=10でも代用可能)
