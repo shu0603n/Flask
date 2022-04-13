@@ -42,6 +42,11 @@ git add .
 git commit -m 'message'
 git push heroku master
 '''
+#heroku更新
+'''
+git fetch --all
+git heroku -avv
+'''
 
 
 app = Flask(__name__)
