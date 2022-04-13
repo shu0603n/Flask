@@ -4,6 +4,11 @@ from pandas import isnull
 import psycopg2
 import database
 import sqlFunc
+#クラスインスタンス化
+db = database.DataBase
+query =sqlFunc.SqlFunc
+#DBの接続情報を取得
+con = db.connect()
 
 #実行方法
 #コマンドプロンプトで下記を実行。
@@ -37,16 +42,10 @@ git add .
 git commit -m 'message'
 git push heroku master
 '''
-# gunicorn設定
-# どっちだっけ・・・
-'''
-web: gunicorn app:app
-web: python app.py
-'''
+
 
 app = Flask(__name__)
 
-query =sqlFunc.SqlFunc
 
 @app.route('/',methods=["GET", "POST"])
 def index():
@@ -57,24 +56,14 @@ def login():
 
     print('login処理開始')
 
-    #DataBaseクラスをインスタンス化
-    db = database.DataBase
-
-    #DBの接続情報を取得
-    con = db.connect()
-
     #画面から送られてきたパラメータを変数に代入
     user_id = request.form.get("user_id")
     password = request.form.get("password")
 
     #SQL文にバインド変数を代入する。
     sql = query.selectPassword(user_id, password)
-
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
-
-    #DB接続を終了
-    con.close()
 
     if len(res) == 0:
         #不一致のメッセージをindex.htmlに返す
@@ -91,11 +80,36 @@ def dashboard():
 
 @app.route("/kokyakuList")
 def kokyakuList():
-    return render_template('kokyakuList.html' )
 
-@app.route("/kokyaku")
-def kokyaku():
-    return render_template('kokyaku.html')
+
+    sql = query.selectKokyakuList()
+    res = db.select_execute(con, sql)
+
+    for str in res:
+        print(str)
+        
+    return render_template('kokyakuList.html' ,kokyakuList = res)
+
+@app.route("/kokyaku/<kokyaku_id>")
+def kokyaku(kokyaku_id):
+    print(kokyaku_id)
+
+    #SQLを実行
+    sql = query.selectKokyaku(kokyaku_id)
+    res = db.select_execute(con, sql)
+
+    #SQLを実行
+    sql2 = query.selectKokyakuRireki(kokyaku_id)
+    res2 = db.select_execute(con, sql2)
+    print(res2)
+    
+    sum_cnt = len(res2)
+    sum_kg = 0
+    for i in res2:
+        sum_kg += i['menu_kg']
+    print(sum_kg)
+
+    return render_template('kokyaku.html' ,kokyaku = res[0] ,kokyakuRireki = res2,sum_cnt=sum_cnt,sum_kg=sum_kg)
 
 @app.route("/kokyakuInsert")
 def kokyakuInsert():
@@ -116,22 +130,9 @@ def seisan():
 @app.route("/userList")
 def userList():
 
-    #DataBaseクラスをインスタンス化
-    db = database.DataBase
-
-    #DBの接続情報を取得
-    con = db.connect()
-
-    #画面から送られてきたパラメータを変数に代入
-    
-    #SQL文にバインド変数を代入する。
+    #SQLを実行
     sql = query.selectUserList()
-
-    #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
-
-    #DB接続を終了
-    con.close()
 
     return render_template('userList.html')
     

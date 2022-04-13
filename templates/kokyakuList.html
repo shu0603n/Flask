@@ -15,66 +15,35 @@
 
   <div class="my-3 p-3 bg-body rounded shadow-sm">
     <h6 class="border-bottom pb-2 mb-0">宿泊中のお客様</h6>
+    {% for kokyaku in kokyakuList %}
     <div class="d-flex text-muted pt-3">
       <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#007bff" width="100%" height="100%" /><text fill="#007bff" dy=".3em" x="50%" y="50%">32x32</text></svg>
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">@ユーザー名</strong>
-        このユーザーに関するいくつかの情報を含む、いくつかの代表的なプレースホルダーコンテンツ。これが何らかのステータス更新であると想像してみよう。
+        <strong class="d-block text-gray-dark">{{ kokyaku['name_m'] }} {{ kokyaku['name_s'] }}</strong>
+        {{ kokyaku['memo'] }}
       </p>
     </div>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#e83e8c" width="100%" height="100%" /><text fill="#e83e8c" dy=".3em" x="50%" y="50%">32x32</text></svg>
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">@ユーザー名</strong>
-        この他のユーザーに関連するより代表的なプレースホルダーコンテンツ。恐らく別のステータスの更新。
-      </p>
-    </div>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#6f42c1" width="100%" height="100%" /><text fill="#6f42c1" dy=".3em" x="50%" y="50%">32x32</text></svg>
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">@ユーザー名</strong>
-        このユーザーは、代表的なプレースホルダーコンテンツも取得。たぶんそれらは何か面白いことをした、そしてあなたは本当に最近のアップデートでこれを強調したいと思う。
-      </p>
-    </div>
+    {% endfor %}
     <small class="d-block text-end mt-3">
       <a href="#">すべてを表示</a>
     </small>
   </div>
 
-  <div class="my-3 p-3 bg-body rounded shadow-sm">
-    <h6 class="border-bottom pb-2 mb-0">顧客一覧</h6>
+    {% for kokyaku in kokyakuList %}
     <div class="d-flex text-muted pt-3">
       <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#007bff" width="100%" height="100%" /><text fill="#007bff" dy=".3em" x="50%" y="50%">32x32</text></svg>
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">フルネーム</strong>
-          <a href="/user">詳細</a>
+          <strong class="text-gray-dark">{{ kokyaku['name_m'] }} {{ kokyaku['name_s'] }}</strong>
+          <a href="/kokyaku/{{ kokyaku['kokyaku_id'] }}">詳細</a>
         </div>
-        <span class="d-block">@ユーザー名</span>
+        <span class="d-block">電話番号：{{ kokyaku['tel'] }} / {{ kokyaku['tel_mob'] }}</span>
       </div>
     </div>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#007bff" width="100%" height="100%" /><text fill="#007bff" dy=".3em" x="50%" y="50%">32x32</text></svg>
-      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">フルネーム</strong>
-          <a href="/user">詳細</a>
-        </div>
-        <span class="d-block">@ユーザー名</span>
-      </div>
-    </div>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><title>一般的なプレースホルダ画像</title><rect fill="#007bff" width="100%" height="100%" /><text fill="#007bff" dy=".3em" x="50%" y="50%">32x32</text></svg>
-      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">フルネーム</strong>
-          <a href="/user">詳細</a>
-        </div>
-        <span class="d-block">@ユーザー名</span>
-      </div>
-    </div>
+    {% endfor %}
+
     <small class="d-block text-end mt-3">
-      <a href="/user">すべてを表示</a>
+      <a href="#">すべてを表示</a>
     </small>
   </div>
 </main>
