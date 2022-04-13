@@ -25,7 +25,7 @@ flask run
 
 #SQL接続
 """
-heroku pg：psql postgresql-silhouetted-72488 --app q-system-origin
+heroku pg:psql postgresql-silhouetted-72488 --app q-system-origin
 """
 
 #Gitデプロイ方法
