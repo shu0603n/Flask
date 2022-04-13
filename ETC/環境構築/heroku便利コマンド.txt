@@ -1,0 +1,50 @@
+# DBの作り直し => 確認のためにアプリ名を聞かれるので入力してENTER
+heroku pg:reset DATABASE
+(heroku rake db:migrate:redo STEP=10でも代用可能)
+
+# 最新ログをコマンドラインで監視
+heroku logs -t
+
+# Herokuへssh接続
+heroku run bash
+
+# Herokuでirbを起動
+heroku run console
+
+# ブランチから herokuのmasterへpushする
+git push heroku yourbranch:master
+
+# Herokuへの環境変数の変更
+heroku config:set TWITTER_KEY=**********
+
+# Herokuの環境変数の確認
+heroku config | grep "TWITTER"
+
+# HerokuのConfigをA=B形式で出力 .envとかするのに最適
+heroku config --shell
+#=> DATABASE_URL= xxx
+
+# Herokuのインスタンス再起動
+heroku restart
+
+# Herokuで動いているプロセスのチェック
+heroku ps
+
+# Herokuのリリース履歴の確認
+heroku releases
+
+# 戻したいバージョンを指定してロールバックをかける  
+# <バージョン番号>はheroku releasesで確認
+heroku rollback <バージョン番号>
+
+# アプリケーションの完全削除
+heroku apps:destroy --app APP 
+
+# アプリの詳細情報を表示
+heroku apps:info 
+
+# herokuアプリへの紐付け
+heroku apps:join --app APP  
+
+# herokuアプリへのヒモ付け解除
+heroku apps:leave --app APP
