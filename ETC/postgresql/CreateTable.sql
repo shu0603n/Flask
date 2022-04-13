@@ -1,3 +1,4 @@
+-- heroku pg：psql postgresql-silhouetted-72488 --app q-system-origin
 drop table user_pass;
 create table user_pass (
   user_id character varying(10) not null  primary key
