@@ -7,9 +7,9 @@ class DataBase:
     def connect():
 
         # 本番環境
-        # DATABASE_URL= 'postgres://ifnxktkdxwankq:07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674@ec2-34-207-12-160.compute-1.amazonaws.com:5432/d360nfch4hl8mt'
-        # con = psycopg2.connect(DATABASE_URL)
-        con = psycopg2.connect('postgres://ifnxktkdxwankq:07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674@ec2-34-207-12-160.compute-1.amazonaws.com:5432/d360nfch4hl8mt')
+        DATABASE_URL= 'postgres://mnswsarornkacw:7f08440eeee25f91678fa8dd8a651ca466dee35604d472faeebc18469022042f@ec2-54-158-247-210.compute-1.amazonaws.com:5432/d9890aui1o6ucu'
+        con = psycopg2.connect(DATABASE_URL)
+        # con = psycopg2.connect('postgres://ifnxktkdxwankq:07c61dd3a3d8e7e6b73f58038695a8ebb9e994a92d93651abbfe14121e198674@ec2-34-207-12-160.compute-1.amazonaws.com:5432/d360nfch4hl8mt')
         # LOCAL環境
         # con = psycopg2.connect('host=localhost port=5432 dbname=PGLOCAL user=postgres password=postgres')
 
