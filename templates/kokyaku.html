@@ -47,17 +47,18 @@
   <div class="col-md-7 col-lg-8">
     <h4 class="mb-3"></h4>
     <form class="needs-validation" action="/kokyakuUpdate" novalidate>
+      <input type="hidden" id="kokyaku_id" value="{{ kokyaku['kokyaku_id'] }}">
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="familyName" class="form-label">姓</label>
-          <input type="text" class="form-control" id="familyName" placeholder="" value="{{ kokyaku['name_m'] }}" required>
+          <input type="text" class="form-control" id="name_m" placeholder="" value="{{ kokyaku['name_m'] }}" required>
           <div class="invalid-feedback">
             名字を入力してください
           </div>
         </div>
         <div class="col-sm-6">
           <label for="givenName" class="form-label">名</label>
-          <input type="text" class="form-control" id="givenName" placeholder="" value="{{ kokyaku['name_s'] }}" required>
+          <input type="text" class="form-control" id="name_s" placeholder="" value="{{ kokyaku['name_s'] }}" required>
           <div class="invalid-feedback">
             名前を入力してください
           </div>
@@ -65,14 +66,14 @@
 
         <div class="col-sm-6">
           <label for="familyName" class="form-label">姓(カナ)</label>
-          <input type="text" class="form-control" id="familyNameKana" placeholder="" value="{{ kokyaku['name_mk'] }}" required>
+          <input type="text" class="form-control" id="name_mk" placeholder="" value="{{ kokyaku['name_mk'] }}" required>
           <div class="invalid-feedback">
             名字(カナ)を入力してください
           </div>
         </div>
         <div class="col-sm-6">
           <label for="givenName" class="form-label">名(カナ)</label>
-          <input type="text" class="form-control" id="givenNameKana" placeholder="" value="{{ kokyaku['name_sk'] }}" required>
+          <input type="text" class="form-control" id="name_sk" placeholder="" value="{{ kokyaku['name_sk'] }}" required>
           <div class="invalid-feedback">
             名前(カナ)を入力してください
           </div>
@@ -80,14 +81,14 @@
 
         <div class="col-sm-6">
           <label for="text" class="form-label">固定電話番号 <span class="text-muted"></span></label>
-          <input type="text" class="form-control" id="telNumber" placeholder="012-345-6789" value="{{ kokyaku['tel'] }}">
+          <input type="text" class="form-control" id="tel" placeholder="012-345-6789" value="{{ kokyaku['tel'] }}">
           <div class="invalid-feedback">
             固定電話番号を入力してください
           </div>
         </div>
         <div class="col-sm-6">
           <label for="text" class="form-label">携帯電話番号 <span class="text-muted"></span></label>
-          <input type="text" class="form-control" id="mobileNumber" placeholder="012-345-6789" value="{{ kokyaku['tel_mob'] }}">
+          <input type="text" class="form-control" id="tel_mob" placeholder="012-345-6789" value="{{ kokyaku['tel_mob'] }}">
           <div class="invalid-feedback">
             携帯電話番号を入力してください
           </div>
@@ -102,14 +103,14 @@
 
         <div class="col-md-3">
           <label for="zip" class="form-label">郵便番号</label>
-          <input type="text" class="form-control" id="zip" placeholder="000-1111" value="{{ kokyaku['yubin'] }}" required>
+          <input type="text" class="form-control" id="yubin" placeholder="000-1111" value="{{ kokyaku['yubin'] }}" required>
           <div class="invalid-feedback">
             郵便番号を入力してください
           </div>
         </div>
         <div class="col-md-5">
           <label for="pref" class="form-label">都道府県</label>
-          <select class="form-select d-block w-100" id="pref" required>
+          <select class="form-select d-block w-100" id="jusho1" required>
             <option>選択...</option>
             <option>北海道</option>
           </select>
@@ -119,7 +120,7 @@
         </div>
         <div class="col-md-4">
           <label for="city" class="form-label">市町村</label>
-          <select class="form-select d-block w-100" id="city" required>
+          <select class="form-select d-block w-100" id="jusho2" required>
             <option>選択...</option>
             <option>札幌市</option>
           </select>
@@ -130,7 +131,7 @@
 
         <div class="col-12">
           <label for="address" class="form-label">住所</label>
-          <input type="text" class="form-control" id="address" placeholder="地番" value="{{ kokyaku['jusho3'] }}" required>
+          <input type="text" class="form-control" id="jusho3" placeholder="地番" value="{{ kokyaku['jusho3'] }}" required>
           <div class="invalid-feedback">
             配送先住所を入力してください
           </div>
@@ -138,7 +139,7 @@
 
         <div class="col-12">
           <label for="address2" class="form-label">住所 2 <span class="text-muted">(任意)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="アパート・マンション名" value="{{ kokyaku['jusho4'] }}" >
+          <input type="text" class="form-control" id="jusho4" placeholder="アパート・マンション名" value="{{ kokyaku['jusho4'] }}" >
         </div>
 
         <div class="col-md-12">

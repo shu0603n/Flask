@@ -17,12 +17,6 @@ set FLASK_ENV=development
 flask run
 """
 
-#停止方法
-"""
-[Ctrl + C]で停止
-再度flask runで起動
-"""
-
 #SQL接続
 """
 heroku pg:psql postgresql-silhouetted-72488 --app q-system-origin
@@ -43,7 +37,8 @@ git commit -m 'message'
 git push heroku master
 
 heroku releases
-$ heroku rollback v23
+#最終動作確認
+heroku rollback v38
 '''
 #heroku更新
 '''
@@ -93,9 +88,6 @@ def kokyakuList():
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
-    for str in res:
-        print(str)
-        
     return render_template('kokyakuList.html' ,kokyakuList = res)
 
 @app.route("/kokyaku/<kokyaku_id>")
@@ -111,21 +103,50 @@ def kokyaku(kokyaku_id):
     res2 = db.select_execute(con, sql2)
     print(res2)
     
-    sum_cnt = len(res2)
     sum_kg = 0
     for i in res2:
         sum_kg += i['menu_kg']
-    print(sum_kg)
 
-    return render_template('kokyaku.html' ,kokyaku = res[0] ,kokyakuRireki = res2,sum_cnt=sum_cnt,sum_kg=sum_kg)
+    return render_template('kokyaku.html' ,kokyaku = res[0] ,kokyakuRireki = res2,sum_cnt=len(res2),sum_kg=sum_kg)
+    
+@app.route("/kokyakuUpdate",methods=["GET", "POST"])
+def kokyakuUpdate():
+   
+    kokyaku_id = request.form.get("kokyaku_id")
+    print('-------------------------')
+    print(kokyaku_id)
+
+    # #SQLを実行
+    # sql = query.selectKokyaku(kokyaku_id)
+    # res = db.select_execute(con, sql)
+
+    # #SQLを実行
+    # sql2 = query.selectKokyakuRireki(kokyaku_id)
+    # res2 = db.select_execute(con, sql2)
+    # print(res2)
+    
+    # sum_cnt = len(res2)
+    # sum_kg = 0
+    # for i in res2:
+    #     sum_kg += i['menu_kg']
+    # print(sum_kg)
+
+    # print("kokyaku.html/'%s'" %(kokyaku_id))
+    return render_template("kokyaku.html/'%s'" %(kokyaku_id))
 
 @app.route("/kokyakuInsert")
 def kokyakuInsert():
     return render_template('kokyakuInsert.html')
 
+
 @app.route("/yoyaku")
 def yoyaku():
-    return render_template('yoyaku.html')
+    sql = query.selectYoyakuList()
+    res = db.select_execute(con, sql)
+
+    for str in res:
+        print(str)
+    return render_template('yoyaku.html',kokyakuList = res)
 
 @app.route("/uriage")
 def uriage():
