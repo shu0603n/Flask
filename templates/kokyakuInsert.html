@@ -2,7 +2,7 @@
 {% block context %}
  <!-- 画面上部タイトル -->
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">ユーザー管理</h1>
+  <h1 class="h2" style="margin-top: 100px;">ユーザー管理</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
   </div>
 </div>
@@ -13,69 +13,36 @@
   <div class="col-md-5 col-lg-4 order-md-last">
     <!-- <img class="rounded-circle mb-4" src="{{ url_for('static',filename='common/img/QSystem_logo.png') }}" width="150px" height ="150px" object-fit="contain" border="dashed 1px silver" > -->
     <img class="rounded-circle mb-4" src="https://pbs.twimg.com/profile_images/1068457755768311808/YyfkGeb7_400x400.jpg" width="150" height ="150" object-fit="contain" border="dashed 1px silver" >
-    <!-- <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-primary">カート</span>
-      <span class="badge bg-primary rounded-pill">3</span>
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">来店記録</span>
+      <span class="badge bg-primary rounded-pill">0</span>
     </h4>
     <ul class="list-group mb-3">
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">商品名</h6>
-          <small class="text-muted">簡単な説明</small>
-        </div>
-        <span class="text-muted">￥12000</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">2番目の商品</h6>
-          <small class="text-muted">簡単な説明</small>
-        </div>
-        <span class="text-muted">￥8000</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">3番目の商品</h6>
-          <small class="text-muted">簡単な説明</small>
-        </div>
-        <span class="text-muted">￥5000</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between bg-light">
-        <div class="text-success">
-          <h6 class="my-0">プロモーションコード</h6>
-          <small>EXAMPLECODE</small>
-        </div>
-        <span class="text-success">−￥5000</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <span>合計 (円)</span>
-        <strong>￥20000</strong>
-      </li>
-    </ul> -->
 
-    <!-- 画面左 -->
-    <!-- <form class="card p-2">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="プロモーションコード">
-        <div class="input-group-append">
-          <button type="submit" class="btn btn-secondary">適用</button>
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div>
+          <h6 class="my-0">来店記録はありません</h6>
         </div>
-      </div>
-    </form> -->
+        <span class="text-muted">0</span>
+      </li>
+      
+    <button class="w-100 btn btn-primary btn-lg" type="submit">来店記録追加</button>
   </div>
+  <!-- 画面左 -->
   <div class="col-md-7 col-lg-8">
     <h4 class="mb-3"></h4>
-    <form class="needs-validation" novalidate>
+    <form name="kokyaku_form" action="/kokyakuInsert" method="POST">
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="familyName" class="form-label">姓</label>
-          <input type="text" class="form-control" id="familyName" placeholder="" value="" required>
+          <input type="text" class="form-control" id="name_m" name="name_m" placeholder="" value="" required>
           <div class="invalid-feedback">
             名字を入力してください
           </div>
         </div>
         <div class="col-sm-6">
           <label for="givenName" class="form-label">名</label>
-          <input type="text" class="form-control" id="givenName" placeholder="" value="" required>
+          <input type="text" class="form-control" id="name_s" name="name_s" placeholder="" value="" required>
           <div class="invalid-feedback">
             名前を入力してください
           </div>
@@ -83,36 +50,36 @@
 
         <div class="col-sm-6">
           <label for="familyName" class="form-label">姓(カナ)</label>
-          <input type="text" class="form-control" id="familyNameKana" placeholder="" value="" required>
+          <input type="text" class="form-control" id="name_mk" name="name_mk" placeholder="" value="" required>
           <div class="invalid-feedback">
             名字(カナ)を入力してください
           </div>
         </div>
         <div class="col-sm-6">
           <label for="givenName" class="form-label">名(カナ)</label>
-          <input type="text" class="form-control" id="givenNameKana" placeholder="" value="" required>
+          <input type="text" class="form-control" id="name_sk" name="name_sk" placeholder="" value="" required>
           <div class="invalid-feedback">
             名前(カナ)を入力してください
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-sm-6">
           <label for="text" class="form-label">固定電話番号 <span class="text-muted"></span></label>
-          <input type="text" class="form-control" id="telNumber" placeholder="012-345-6789">
+          <input type="text" class="form-control" id="tel" name="tel" placeholder="012-345-6789" value="">
           <div class="invalid-feedback">
             固定電話番号を入力してください
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-sm-6">
           <label for="text" class="form-label">携帯電話番号 <span class="text-muted"></span></label>
-          <input type="text" class="form-control" id="mobileNumber" placeholder="012-345-6789">
+          <input type="text" class="form-control" id="tel_mob" name="tel_mob" placeholder="012-345-6789" value="">
           <div class="invalid-feedback">
             携帯電話番号を入力してください
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-sm-6aa">
           <label for="email" class="form-label">Eメール <span class="text-muted">(任意)</span></label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" value="">
           <div class="invalid-feedback">
             有効なメールアドレスを入力してください
           </div>
@@ -120,14 +87,14 @@
 
         <div class="col-md-3">
           <label for="zip" class="form-label">郵便番号</label>
-          <input type="text" class="form-control" id="zip" placeholder="000-1111" required>
+          <input type="text" class="form-control" id="yubin" name="yubin" placeholder="000-1111" value="" required>
           <div class="invalid-feedback">
             郵便番号を入力してください
           </div>
         </div>
         <div class="col-md-5">
           <label for="pref" class="form-label">都道府県</label>
-          <select class="form-select d-block w-100" id="pref" required>
+          <select class="form-select d-block w-100" id="jusho1" required>
             <option>選択...</option>
             <option>北海道</option>
           </select>
@@ -137,7 +104,7 @@
         </div>
         <div class="col-md-4">
           <label for="city" class="form-label">市町村</label>
-          <select class="form-select d-block w-100" id="city" required>
+          <select class="form-select d-block w-100" id="jusho2" required>
             <option>選択...</option>
             <option>札幌市</option>
           </select>
@@ -148,7 +115,7 @@
 
         <div class="col-12">
           <label for="address" class="form-label">住所</label>
-          <input type="text" class="form-control" id="address" placeholder="地番" required>
+          <input type="text" class="form-control" id="jusho3" name="jusho3" placeholder="地番" value="" required>
           <div class="invalid-feedback">
             配送先住所を入力してください
           </div>
@@ -156,31 +123,15 @@
 
         <div class="col-12">
           <label for="address2" class="form-label">住所 2 <span class="text-muted">(任意)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="アパート・マンション名">
+          <input type="text" class="form-control" id="jusho4" name="jusho4" placeholder="アパート・マンション名" value="" >
         </div>
 
         <div class="col-md-12">
           <label for="zip" class="form-label">メモ</label>
-          <textarea type="text" class="form-control" id="memo" placeholder="" rows="5">
+          <textarea type="text" class="form-control" id="memo" name="memo" placeholder="" rows="5" value="" >
           </textarea>
           <div class="invalid-feedback">
-            
-          </div>
         </div>
-
-
-
-        <div class="col-12">
-          <label for="username" class="form-label">Twitter</label>
-          <div class="input-group has-validation">
-            <span class="input-group-text">@</span>
-            <input type="text" class="form-control" id="username" placeholder="ユーザーネーム" required>
-          <div class="invalid-feedback">
-              ユーザー名が必要です
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <hr class="my-4">

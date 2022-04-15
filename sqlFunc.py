@@ -69,5 +69,54 @@ class SqlFunc:
 
         return sql
 
+    def updateKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id):
+        sql = '''
+            update kokyaku_data 
+            set
+                name_m = '%s'
+                , name_s = '%s'
+                , name_mk = '%s'
+                , name_sk = '%s'
+                , jusho1 = '%s'
+                , jusho2 = '%s'
+                , jusho3 = '%s'
+                , jusho4 = '%s'
+                , yubin = '%s'
+                , email = '%s'
+                , tel = '%s'
+                , tel_mob = '%s'
+                , memo = '%s'
+            where
+                kokyaku_id = '%s'
+        '''% (name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id)
+
+        return sql
+
+    def insertKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id):
+        sql = '''
+            Insert into 
+                kokyaku_data 
+            values
+                (
+                '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                , '%s'
+                )
+        '''% (name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id)
+
+        return sql
+
+
         
 

@@ -48,7 +48,6 @@ git fetch --all
 git heroku -avv
 '''
 
-
 app = Flask(__name__)
 
 # @app.route('/favicon.ico')
@@ -63,8 +62,6 @@ def index():
 
 @app.route("/login",methods=["GET", "POST"])
 def login():
-
-    print('login処理開始')
 
     #画面から送られてきたパラメータを変数に代入
     user_id = request.form.get("user_id")
@@ -96,11 +93,14 @@ def dashboard():
 @app.route("/kokyakuList")
 def kokyakuList():
 
-
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
     return render_template('kokyakuList.html' ,kokyakuList = res)
+
+@app.route("/kokyaku")
+def kokyakuIns():
+        return render_template('kokyaku.html' ,sum_cnt=0,sum_kg=0)
 
 @app.route("/kokyaku/<kokyaku_id>")
 def kokyaku(kokyaku_id):
@@ -125,33 +125,65 @@ def kokyaku(kokyaku_id):
 def kokyakuUpdate():
    
     kokyaku_id = request.form.get("kokyaku_id")
-    print('-------------------------')
-    print(kokyaku_id)
+    name_m = request.form.get("name_m")
+    name_s = request.form.get("name_s")
+    name_mk = request.form.get("name_mk")
+    name_sk = request.form.get("name_sk")
+    tel = request.form.get("tel")
+    tel_mob = request.form.get("tel_mob")
+    email = request.form.get("email")
+    yubin = request.form.get("yubin")
+    jusho1 = request.form.get("jusho1")
+    jusho2 = request.form.get("jusho2")
+    jusho3 = request.form.get("jusho3")
+    jusho4 = request.form.get("jusho4")
+    memo = request.form.get("memo")
 
-    # #SQLを実行
-    # sql = query.selectKokyaku(kokyaku_id)
-    # res = db.select_execute(con, sql)
+    #変更をコミット
+    sql = query.updateKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id)
+    db.updatet_execute(con, sql)
 
-    # #SQLを実行
-    # sql2 = query.selectKokyakuRireki(kokyaku_id)
-    # res2 = db.select_execute(con, sql2)
-    # print(res2)
+    sql = query.selectKokyakuList()
+    res = db.select_execute(con, sql)
+
+    return render_template('kokyakuList.html' ,kokyakuList = res)
+
+@app.route("/kokyakuInput",methods=["GET", "POST"])
+def kokyakuInput():
     
-    # sum_cnt = len(res2)
-    # sum_kg = 0
-    # for i in res2:
-    #     sum_kg += i['menu_kg']
-    # print(sum_kg)
-
-    # print("kokyaku.html/'%s'" %(kokyaku_id))
-    return render_template("kokyaku.html/'%s'" %(kokyaku_id))
-
-@app.route("/kokyakuInsert")
-def kokyakuInsert():
     return render_template('kokyakuInsert.html')
 
+@app.route("/kokyakuInsert",methods=["GET", "POST"])
+def kokyakuInsert():
 
-@app.route("/yoyaku")
+    print(test)
+
+    kokyaku_id ='7'
+    name_m = request.form.get("name_m")
+    name_s = request.form.get("name_s")
+    name_mk = request.form.get("name_mk")
+    name_sk = request.form.get("name_sk")
+    tel = request.form.get("tel")
+    tel_mob = request.form.get("tel_mob")
+    email = request.form.get("email")
+    yubin = request.form.get("yubin")
+    jusho1 = request.form.get("jusho1")
+    jusho2 = request.form.get("jusho2")
+    jusho3 = request.form.get("jusho3")
+    jusho4 = request.form.get("jusho4")
+    memo = request.form.get("memo")
+
+    #変更をコミット
+    sql = query.insertKokyakuData(kokyaku_id,name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo)
+    print(sql)
+    db.insert_execute(con, sql)
+
+    sql = query.selectKokyakuList()
+    res = db.select_execute(con, sql)
+
+    return render_template('kokyakuList.html' ,kokyakuList = res)
+
+@app.route("/yoyaku",methods=["GET", "POST"])
 def yoyaku():
     sql = query.selectYoyakuList()
     res = db.select_execute(con, sql)
@@ -160,7 +192,7 @@ def yoyaku():
         print(str)
     return render_template('yoyaku.html',kokyakuList = res)
 
-@app.route("/uriage")
+@app.route("/uriage",methods=["GET", "POST"])
 def uriage():
     #SQL文にバインド変数を代入する。
     sql = query.selectUriage()
@@ -168,11 +200,11 @@ def uriage():
     res = db.select_execute(con, sql)
     return render_template('uriage.html',uriageList=res)
 
-@app.route("/seisan")
+@app.route("/seisan",methods=["GET", "POST"])
 def seisan():
     return render_template('seisan.html')
 
-@app.route("/userList")
+@app.route("/userList",methods=["GET", "POST"])
 def userList():
 
     #SQLを実行
@@ -181,11 +213,11 @@ def userList():
 
     return render_template('userList.html')
     
-@app.route("/user")
+@app.route("/user",methods=["GET", "POST"])
 def user():
     return render_template('user.html')
 
-@app.route("/userInsert")
+@app.route("/userInsert",methods=["GET", "POST"])
 def userInsert():
     return render_template('userInsert.html')
 

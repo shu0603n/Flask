@@ -1,0 +1,1 @@
+CREATE SEQUENCE kokyaku_seq AS integer;

@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>サインインページ</title>
+    <!-- commonのCSS読み込み -->
     <link rel="icon" href="{{ url_for('static',filename='/commonfavicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='common/css/style.css') }}">
+
     <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -13,8 +16,6 @@
     <!-- BootstrapのJS読み込み -->
     <script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-    <!-- commonのCSS読み込み -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='common/css/style.css') }}">
 </head>
       {% block context %}
       {% endblock %}
