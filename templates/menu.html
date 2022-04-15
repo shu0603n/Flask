@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ダッシュボード</title>
-  <!-- commonのCSS読み込み -->
-  <link href="{{ url_for('static',filename='common/css/dashboard.css') }}" rel="stylesheet" type="text/css">
-  <!-- BootstrapのCSS読み込み -->
-  <link href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Chart.js読み込み -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <!-- feather.js読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
   <!-- jQuery読み込み -->
   <script src="{{ url_for('static',filename='JQuery/jquery-3.3.1.min.js') }}"></script>
+
+  <!-- BootstrapのCSS読み込み -->
+  <link href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- BootstrapのJS読み込み -->
   <script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
-  <!-- commonのJS読み込み -->
-  <script src="{{ url_for('static',filename='common/js/dashboard.js') }}"></script>
+
+  <!-- commonのCSS読み込み -->
+  <link href="{{ url_for('static',filename='common/css/dashboard.css') }}" rel="stylesheet" type="text/css">
+
 
 </head>
 
@@ -32,16 +36,6 @@
     </div>
   </header> -->
   <header>
-    <!-- <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-          <li><a href="#contents1">コンテンツ1</a></li>
-          <li><a href="#contents2">コンテンツ2</a></li>
-          <li><a href="#contents3">コンテンツ3</a></li>
-          <li><a href="#contents4">コンテンツ4</a></li>
-          <li><a href="#contents5">コンテンツ5</a></li>
-      </ul>
-    </nav> -->
-
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow navbar-collapse bs-navbar-collapse ">
       <div class="container-fluid">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/dashboard">Q-System</a>
@@ -97,25 +91,25 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/kokyakuList">
-                <span data-feather="file"></span>
+                <span data-feather="users"></span>
                 顧客管理
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/yoyaku">
-                <span data-feather="shopping-cart"></span>
+                <span data-feather="layers"></span>
                 予約管理
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/uriage">
-                <span data-feather="users"></span>
+                <span data-feather="shopping-cart"></span>
                 売上管理
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/userList">
-                <span data-feather="layers"></span>
+                <span data-feather="file"></span>
                 ユーザー管理
               </a>
             </li>
@@ -163,11 +157,6 @@
     </div>
   </div>
 
-  <script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <!-- アイコン -->
-  <script src="{{ url_for('static',filename='bootstrap/dist/feather.min.js') }}" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-  <!-- グラフ -->
-  <script src="{{ url_for('static',filename='bootstrap/dist/Chart.min.js') }}" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
   <!-- commonのJS読み込み -->
   <script src="{{ url_for('static',filename='common/js/dashboard.js') }}"></script>
 </body>

@@ -3,6 +3,8 @@ from flask import render_template
 from pandas import isnull
 import database
 import sqlFunc
+
+from flask import send_from_directory
 #クラスインスタンス化
 db = database.DataBase
 query =sqlFunc.SqlFunc
@@ -49,7 +51,12 @@ git heroku -avv
 
 app = Flask(__name__)
 
+# @app.route('/favicon.ico')
+# def favicon():
+#     # return send_from_directory(os.path.join(app.root_path, 'static/img') 
+#     return send_from_directory('/', 'static/common') 
 
+    
 @app.route('/',methods=["GET", "POST"])
 def index():
     return render_template('index.html')
@@ -79,7 +86,12 @@ def login():
 @app.route("/dashboard")
 def dashboard():
 
-    return render_template('dashboard.html')
+    #SQL文にバインド変数を代入する。
+    sql = query.selectUriage()
+    #SQLを実行し戻り値として結果を受け取る
+    res = db.select_execute(con, sql)
+
+    return render_template('dashboard.html',uriageList=res)
 
 @app.route("/kokyakuList")
 def kokyakuList():
@@ -150,7 +162,11 @@ def yoyaku():
 
 @app.route("/uriage")
 def uriage():
-    return render_template('uriage.html')
+    #SQL文にバインド変数を代入する。
+    sql = query.selectUriage()
+    #SQLを実行し戻り値として結果を受け取る
+    res = db.select_execute(con, sql)
+    return render_template('uriage.html',uriageList=res)
 
 @app.route("/seisan")
 def seisan():

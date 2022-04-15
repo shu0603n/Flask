@@ -17,6 +17,24 @@ class SqlFunc:
         sql = "select * from kokyaku_data where kokyaku_id = '%s'" % (kokyaku_id)
         return sql
 
+    def selectUriage():
+        sql = '''
+            select
+                kokyakuRireki.start_dt
+                , menu.menu_kg
+                , kokyaku_data.name_m
+                , kokyaku_data.name_s
+                , menu.menu_nm
+                , kokyakuRireki.ninzu 
+            from
+                kokyakuRireki 
+                inner join kokyaku_data 
+                    on kokyakuRireki.kokyaku_id = kokyaku_data.kokyaku_id 
+                inner join menu 
+                    on kokyakuRireki.menu_id = menu.menu_id
+        '''
+        return sql
+
     def selectKokyakuRireki(kokyaku_id):
         sql = '''
             select
