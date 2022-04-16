@@ -42,7 +42,48 @@
         <strong>{{ sum_kg }}円</strong>
       </li>
     </ul>
-    <button class="w-100 btn btn-primary btn-lg" type="submit">来店記録追加</button>
+    
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">記録追加</span>
+    </h4>
+    <form name="rireki_form" action="/rirekiInsert" method="POST">
+      <input type="hidden" id="kokyaku_id" name="kokyaku_id" value="{{ kokyaku['kokyaku_id'] }}">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="familyName" class="form-label">来店日</label>
+          <input type="date" class="form-control" id="start_dt" name="start_dt" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            名字を入力してください
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="givenName" class="form-label">終了日</label>
+          <input type="date" class="form-control" id="end_dt" name="end_dt" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            名前を入力してください
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="pref" class="form-label">メニュー</label>
+          <select class="form-select d-block w-100" id="menu_id" neme="menu_id" required>
+            <option value="0">選択...</option>
+            <option value="1">のんびりプラン</option>
+          </select>
+          <div class="invalid-feedback">
+            都道府県を選択してください
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="givenName" class="form-label">ご利用人数</label>
+          <input type="text" class="form-control" id="ninzu" name="ninzu" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            名前(カナ)を入力してください
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <button class="w-100 btn btn-primary btn-lg" type="submit">来店記録追加</button>
+    </form>
   </div>
   <!-- 画面左 -->
   <div class="col-md-7 col-lg-8">
@@ -93,7 +134,7 @@
         </div>
         <div class="col-sm-3">
           <label for="givenName" class="form-label">生年月日</label>
-          <input type="text" class="form-control" id="" name="" placeholder="" value="">
+          <input type="date" class="form-control" id="" name="" placeholder="" value="">
           <div class="invalid-feedback">
             名前(カナ)を入力してください
           </div>
@@ -138,7 +179,7 @@
         </div>
         <div class="col-md-3">
           <label for="pref" class="form-label">都道府県</label>
-          <select class="form-select d-block w-100" id="jusho1" required>
+          <select class="form-select d-block w-100" id="jusho1" name="jusho1">
             <option>選択...</option>
             <option>北海道</option>
           </select>
@@ -148,7 +189,7 @@
         </div>
         <div class="col-md-4">
           <label for="city" class="form-label">市町村</label>
-          <select class="form-select d-block w-100" id="jusho2">
+          <select class="form-select d-block w-100" id="jusho2" name="jusho2">
             <option>選択...</option>
             <option>札幌市</option>
           </select>
@@ -179,69 +220,10 @@
       </div>
 
       <hr class="my-4">
-
-      <!-- <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="addressCheck">
-        <label class="form-check-label" for="addressCheck">配送先住所は、請求先住所と同じです</label>
-      </div>
-
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="keepCheck">
-        <label class="form-check-label" for="keepCheck">次回のために、この情報を保存する</label>
-      </div>
-
+      <button class="w-100 btn btn-primary btn-lg" type="submit">更新</button>
+      
       <hr class="my-4">
 
-      <h4 class="mb-3">お支払い方法</h4>
-
-      <div class="my-3">
-        <div class="form-check">
-          <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-          <label class="form-check-label" for="credit">クレジットカード</label>
-        </div>
-        <div class="form-check">
-          <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-          <label class="form-check-label" for="debit">デビットカード</label>
-        </div>
-        <div class="form-check">
-          <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-          <label class="form-check-label" for="paypal">PayPal</label>
-        </div>
-      </div>
-      <div class="row gy-3">
-        <div class="col-md-6">
-          <label for="cc-name" class="form-label">カードの名義</label>
-          <input type="text" class="form-control" id="cc-name" placeholder="" required>
-          <small class="text-muted">カード上に表示されているフルネーム</small>
-          <div class="invalid-feedback">
-            カードの名義を入力してください
-          </div>
-        </div>
-        <div class="col-md-6">
-          <label for="cc-number" class="form-label">クレジットカード番号</label>
-          <input type="text" class="form-control" id="cc-number" placeholder="" required>
-          <div class="invalid-feedback">
-            クレジットカード番号を入力してください
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="cc-expiration" class="form-label">有効期限</label>
-          <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-          <div class="invalid-feedback">
-            有効期限を入力してください
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="cc-cvv" class="form-label">CVV</label>
-          <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-          <div class="invalid-feedback">
-            セキュリティコードを入力してください
-          </div>
-        </div>
-      </div> -->
-
- 
-      <button class="w-100 btn btn-primary btn-lg" type="submit">更新</button>
     </form>
   </div>
 </div>

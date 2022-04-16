@@ -158,7 +158,7 @@ def kokyakuInsert():
 
     print(test)
 
-    kokyaku_id ='7'
+    kokyaku_id ='nextval(text)'
     name_m = request.form.get("name_m")
     name_s = request.form.get("name_s")
     name_mk = request.form.get("name_mk")
@@ -174,7 +174,30 @@ def kokyakuInsert():
     memo = request.form.get("memo")
 
     #変更をコミット
-    sql = query.insertKokyakuData(kokyaku_id,name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo)
+    sql = query.insertKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo)
+    print(sql)
+    db.insert_execute(con, sql)
+
+    sql = query.selectKokyakuList()
+    res = db.select_execute(con, sql)
+
+    return render_template('kokyakuList.html' ,kokyakuList = res)
+
+@app.route("/rirekiInsert",methods=["GET", "POST"])
+def rirekiInsert():
+
+    print(test)
+
+    kokyaku_id =request.form.get("kokyaku_id")
+    start_dt = request.form.get("start_dt")
+    end_dt = request.form.get("end_dt")
+    menu_id = request.form.get("menu_id")
+    ninzu = request.form.get("ninzu")
+
+    menu_id = 1
+
+    #変更をコミット
+    sql = query.insertKokyakuRireki(kokyaku_id,start_dt,end_dt,menu_id,ninzu)
     print(sql)
     db.insert_execute(con, sql)
 
@@ -230,6 +253,6 @@ def menu():
 def signin():
     return render_template('index.html')
 
-@app.route("/test/<str>")
-def test(str):
-    return f'変数は→{ str }です'
+@app.route("/test")
+def test():
+    return render_template('test.html')

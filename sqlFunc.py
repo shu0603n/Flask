@@ -92,13 +92,13 @@ class SqlFunc:
 
         return sql
 
-    def insertKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id):
+    def insertKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo):
         sql = '''
             Insert into 
                 kokyaku_data 
             values
                 (
-                '%s'
+                nextval('kokyaku_seq')
                 , '%s'
                 , '%s'
                 , '%s'
@@ -113,10 +113,25 @@ class SqlFunc:
                 , '%s'
                 , '%s'
                 )
-        '''% (name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id)
+        '''% (name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo)
 
         return sql
 
+    def insertKokyakuRireki(kokyaku_id,start_dt,end_dt,menu_id,ninzu):
+        sql = '''
+            Insert into 
+                kokyakuRireki
+            values
+                (
+                '%s'
+                , '%s'::date
+                , '%s'::date
+                , %s
+                , %s
+                )
+        '''% (kokyaku_id,start_dt,end_dt,menu_id,ninzu)
+
+        return sql
 
         
 
