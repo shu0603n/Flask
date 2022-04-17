@@ -140,7 +140,7 @@ def kokyakuUpdate():
     memo = request.form.get("memo")
 
     #変更をコミット
-    sql = query.updateKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,kokyaku_id)
+    sql = query.updateKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,yubin,jusho2,jusho3,jusho4,email,tel,tel_mob,memo,kokyaku_id)
     db.updatet_execute(con, sql)
 
     sql = query.selectKokyakuList()
@@ -174,7 +174,7 @@ def kokyakuInsert():
     memo = request.form.get("memo")
 
     #変更をコミット
-    sql = query.insertKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo)
+    sql = query.insertKokyakuData(name_m,name_s,name_mk,name_sk,yubin,jusho1,jusho2,jusho3,jusho4,email,tel,tel_mob,memo)
     print(sql)
     db.insert_execute(con, sql)
 
