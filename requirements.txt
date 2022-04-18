@@ -4,6 +4,7 @@ gunicorn
 pandas
 jinja2
 datetime
+sqlalchemy
 
 # Request
 # Credentials
