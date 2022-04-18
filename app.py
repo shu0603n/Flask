@@ -2,7 +2,6 @@ from flask import Flask,request,redirect,url_for,session
 from datetime import timedelta 
 from flask import render_template
 from pandas import isnull
-from sqlalchemy import null
 import database
 import sqlFunc
 
