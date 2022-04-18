@@ -125,7 +125,7 @@ def dashboard():
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
 
-    return render_template('dashboard.html',uriageList=res)
+    return render_template('index.html',uriageList=res)
 
 @app.route("/kokyaku_list")
 def kokyakuList():
@@ -188,7 +188,7 @@ def kokyakuUpdate():
 @app.route("/kokyaku_input",methods=["GET", "POST"])
 def kokyakuInput():
     
-    return render_template('pages/kokyaku/kokyaku_insert.html')
+    return render_template('pages/kokyaku/kokyaku_input.html')
 
 @app.route("/kokyaku_insert",methods=["GET", "POST"])
 def kokyakuInsert():
@@ -245,20 +245,29 @@ def rirekiInsert():
 
 @app.route("/yoyaku",methods=["GET", "POST"])
 def yoyaku():
-    sql = query.selectYoyakuList()
-    res = db.select_execute(con, sql)
+    # sql = query.selectYoyakuList()
+    # res = db.select_execute(con, sql)
 
-    for str in res:
-        print(str)
-    return render_template('yoyaku.html',kokyakuList = res)
+    # for str in res:
+    #     print(str)
+    # return render_template('yoyaku.html',kokyakuList = res)
+    return render_template('pages/yoyaku/yoyaku_list.html')
 
-@app.route("/uriage",methods=["GET", "POST"])
-def uriage():
+@app.route("/uriage_view",methods=["GET", "POST"])
+def uriage_view():
     #SQL文にバインド変数を代入する。
     sql = query.selectUriage()
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
-    return render_template('uriage.html',uriageList=res)
+    return render_template('pages/uriage/uriage_view.html',uriageList=res)
+
+@app.route("/uriage_list",methods=["GET", "POST"])
+def uriage_list():
+    #SQL文にバインド変数を代入する。
+    sql = query.selectUriage()
+    #SQLを実行し戻り値として結果を受け取る
+    res = db.select_execute(con, sql)
+    return render_template('pages/uriage/uriage_list.html',uriageList=res)
 
 @app.route("/seisan",methods=["GET", "POST"])
 def seisan():

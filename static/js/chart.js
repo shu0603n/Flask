@@ -113,6 +113,20 @@ $(function() {
       animateRotate: true
     }
   };
+
+  var lineData = {
+    labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3,12, 1, 3, 4, 8, 7],
+      backgroundColor:'rgba(5, 99, 255, 0.2)'
+      ,
+      borderColor:'rgba(0,99,255,1)',
+      borderWidth: 1,
+      fill: true, // 3: no fill
+    }]
+  };
+
   var areaData = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{
@@ -282,7 +296,7 @@ $(function() {
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
     var lineChart = new Chart(lineChartCanvas, {
       type: 'line',
-      data: data,
+      data: lineData,
       options: options
     });
   }

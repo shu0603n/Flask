@@ -652,12 +652,15 @@
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success btn-rounded btn-fw">更新</button>
+                    <div class="template-demo text-center">
+                      <button type="submit" class="btn btn-success btn-rounded btn-fw">更新</button>
+                    </div>
     
                   </form>
                 </div>
               </div>
             </div>
+
             <div class="col-md-4 d-flex align-items-stretch">
               <div class="row">
                 <div class="col-md-12 grid-margin stretch-card">
@@ -723,7 +726,9 @@
                           </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-rounded btn-fw">更新</button>
+                        <div class="template-demo text-center">
+                          <button type="button" class="btn btn-warning btn-rounded btn-fw">新規登録</button>
+                        </div>
 
                       </form>
 
@@ -732,7 +737,7 @@
                 </div>
                 <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body cente">
                       <h4 class="card-title">顧客情報一覧 <label class="badge badge-danger">{{ sum_cnt }}</label></h4>
                       
 
@@ -746,16 +751,14 @@
                               <th>来店日</th>
                               <th>メニュー</th>
                               <th>金額</th>
-                              <th>人数</th>
                             </tr>
                           </thead>
                           <tbody>
                             {% for rireki in kokyakuRireki %}
                             <tr>
-                              <td><a href="kokyaku_update.html">{{ rireki['start_dt'] }}</a></td>
+                              <td>{{ rireki['start_dt'] }}</td>
                               <td>{{ rireki['menu_nm'] }}</td>
-                              <td class="text-danger"> {{ rireki['menu_kg'] }}円<i class="ti-arrow-down"></i></td>
-                              <td><label class="badge badge-danger">{{ rireki['ninzu'] }}</label></td>
+                              <td> {{ rireki['menu_kg'] }}円</td>
                             </tr>
                             {% endfor %}
                             
@@ -764,6 +767,24 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">年別来店回数</h4>
+                  <canvas id="barChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">月別来店回数</h4>
+                  <canvas id="lineChart"></canvas>
                 </div>
               </div>
             </div>
@@ -786,6 +807,7 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
+  <script src="{{ url_for('static',filename='vendors/chart.js/Chart.min.js') }}"></script>
   <script src="{{ url_for('static',filename='vendors/js/vendor.bundle.base.js') }}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -804,6 +826,7 @@
   <script src="{{ url_for('static',filename='js/file-upload.js') }}"></script>
   <script src="{{ url_for('static',filename='js/typeahead.js') }}"></script>
   <script src="{{ url_for('static',filename='js/select2.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/chart.js') }}"></script>
   <!-- End custom js for this page-->
 </body>
 
