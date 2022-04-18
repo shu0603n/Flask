@@ -1,6 +1,8 @@
-from flask import Flask,request
+from flask import Flask,request,redirect,url_for,session
+from datetime import timedelta 
 from flask import render_template
 from pandas import isnull
+from sqlalchemy import null
 import database
 import sqlFunc
 
@@ -49,36 +51,71 @@ git heroku -avv
 '''
 
 app = Flask(__name__)
-
-# @app.route('/favicon.ico')
-# def favicon():
-#     # return send_from_directory(os.path.join(app.root_path, 'static/img') 
-#     return send_from_directory('/', 'static/common') 
+# セッションに格納する情報を暗号化
+app.secret_key = 'abcdefghijklmn'
+# 3分操作がなければセッションを破棄する
+app.permanent_session_lifetime = timedelta(minutes=3) 
 
     
 @app.route('/',methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
+    # return render_template('index.html')
+    # POSTの場合
+    if request.method == "POST":
+        print("post")
+        #画面から送られてきたパラメータを変数に代入
+        user_id = request.form.get("user_id")
+        password = request.form.get("password")
 
+        #SQL文にバインド変数を代入する。
+        sql = query.selectPassword(user_id, password)
+        #SQLを実行し戻り値として結果を受け取る
+        res = db.select_execute(con, sql)
+        
+        if len(res) != 0:
+            print("ユーザー情報あり")
+            #dashboard.htmlに遷移
+            session.permanent = True  
+            user = request.form.get("id") 
+            session["id"] = user 
+            return redirect(url_for("login"))
+
+        else:
+            print("ユーザー情報なし")
+            #不一致のメッセージをindex.htmlに返す
+            message='パスワードが一致しませんでした'
+            return render_template('pages/login.html',user_id=user_id,message=message)
+            
+    else:
+    # GETの場合
+        print("get")
+        if "id" in session: 
+            print("セッションあり")
+            return redirect(url_for("login"))
+    print("セッションなし")
+    return render_template("pages/login.html",user_id=null) 
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('pages/error/404.html'), 404
+    
 @app.route("/login",methods=["GET", "POST"])
 def login():
+    print("loginサーブレット")
 
-    #画面から送られてきたパラメータを変数に代入
-    user_id = request.form.get("user_id")
-    password = request.form.get("password")
+    if "id" in session: 
+        print("sessionあり")
+        return render_template("index.html", user_id=session["id"])
+    print("sessionなし")
+    message='パスワードが一致しませんでした'
+    return render_template('login.html',user_id="",message=message)
 
-    #SQL文にバインド変数を代入する。
-    sql = query.selectPassword(user_id, password)
-    #SQLを実行し戻り値として結果を受け取る
-    res = db.select_execute(con, sql)
 
-    if len(res) == 0:
-        #不一致のメッセージをindex.htmlに返す
-        message='パスワードが一致しませんでした'
-        return render_template('index.html',user_id=user_id,message=message)
-    else:
-        #dashboard.htmlに遷移
-        return render_template('dashboard.html',user_id=user_id)
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop('id',None)
+    session.clear()
+    return redirect("/")
 
 @app.route("/dashboard")
 def dashboard():
@@ -90,17 +127,17 @@ def dashboard():
 
     return render_template('dashboard.html',uriageList=res)
 
-@app.route("/kokyakuList")
+@app.route("/kokyaku_list")
 def kokyakuList():
 
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
-    return render_template('kokyakuList.html' ,kokyakuList = res)
+    return render_template('pages/kokyaku/kokyaku_list.html' ,kokyakuList = res)
 
 @app.route("/kokyaku")
 def kokyakuIns():
-        return render_template('kokyaku.html' ,sum_cnt=0,sum_kg=0)
+        return render_template('pages/kokyaku/kokyaku_update.html' ,sum_cnt=0,sum_kg=0)
 
 @app.route("/kokyaku/<kokyaku_id>")
 def kokyaku(kokyaku_id):
@@ -119,9 +156,9 @@ def kokyaku(kokyaku_id):
     for i in res2:
         sum_kg += i['menu_kg']
 
-    return render_template('kokyaku.html' ,kokyaku = res[0] ,kokyakuRireki = res2,sum_cnt=len(res2),sum_kg=sum_kg)
+    return render_template('pages/kokyaku/kokyaku_update.html' ,kokyaku = res[0] ,kokyakuRireki = res2,sum_cnt=len(res2),sum_kg=sum_kg)
     
-@app.route("/kokyakuUpdate",methods=["GET", "POST"])
+@app.route("/kokyaku_update",methods=["GET", "POST"])
 def kokyakuUpdate():
    
     kokyaku_id = request.form.get("kokyaku_id")
@@ -146,14 +183,14 @@ def kokyakuUpdate():
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
-    return render_template('kokyakuList.html' ,kokyakuList = res)
+    return render_template('pages/kokyaku/kokyaku_list.html' ,kokyakuList = res)
 
-@app.route("/kokyakuInput",methods=["GET", "POST"])
+@app.route("/kokyaku_input",methods=["GET", "POST"])
 def kokyakuInput():
     
-    return render_template('kokyakuInsert.html')
+    return render_template('pages/kokyaku/kokyaku_insert.html')
 
-@app.route("/kokyakuInsert",methods=["GET", "POST"])
+@app.route("/kokyaku_insert",methods=["GET", "POST"])
 def kokyakuInsert():
 
     print(test)
@@ -181,9 +218,9 @@ def kokyakuInsert():
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
-    return render_template('kokyakuList.html' ,kokyakuList = res)
+    return render_template('pages/kokyaku/kokyaku_list.html' ,kokyakuList = res)
 
-@app.route("/rirekiInsert",methods=["GET", "POST"])
+@app.route("/kokyaku_rireki_insert",methods=["GET", "POST"])
 def rirekiInsert():
 
     print(test)
@@ -204,7 +241,7 @@ def rirekiInsert():
     sql = query.selectKokyakuList()
     res = db.select_execute(con, sql)
 
-    return render_template('kokyakuList.html' ,kokyakuList = res)
+    return render_template('pages/kokyaku/kokyaku_list.html' ,kokyakuList = res)
 
 @app.route("/yoyaku",methods=["GET", "POST"])
 def yoyaku():
