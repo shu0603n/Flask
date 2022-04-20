@@ -35,17 +35,20 @@ git push origin master
 
 #herokuデプロイ方法
 '''
-git pull heroku master
 git add . 
 git commit -m 'message'
 git push heroku master
 
+git pull heroku master
+
 heroku releases
 #最終動作確認
 heroku rollback v38
+
 '''
 #heroku更新
 '''
+git pull heroku master
 git fetch --all
 git heroku -avv
 '''
