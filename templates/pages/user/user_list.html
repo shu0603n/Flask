@@ -27,7 +27,7 @@
                       <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
                     </div>
                     <div>
-                      <a type="button" href="/kokyaku_input" class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>新規登録</a>
+                      <a type="button" href="/user_insert" class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>新規登録</a>
                     </div>
                   </div>
                   
@@ -39,19 +39,19 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>顧客名</th>
+                          <th>ユーザー名</th>
                           <th>顧客名(カナ)</th>
                           <th>固定電話</th>
                           <th>携帯電話</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {% for kokyaku in kokyakuList %}
+                        {% for user in userList %}
                         <tr>
-                          <td><a href="/kokyaku/{{ kokyaku['kokyaku_id'] }}">{{ kokyaku['name_m'] }} {{ kokyaku['name_s'] }}</a></td>
-                          <td>{{ kokyaku['name_mk'] }} {{ kokyaku['name_sk'] }}</td>
-                          <td class="text-danger">{{ kokyaku['name_m'] }}<i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-danger">{{ kokyaku['tel_mob'] }}</label></td>
+                          <td><a href="/user/{{ user['user_id'] }}">{{ user['name_m'] }} {{ user['name_s'] }}</a></td>
+                          <td>{{ user['name_mk'] }} {{ user['name_sk'] }}</td>
+                          <td class="text-danger">{{ user['name_m'] }}<i class="ti-arrow-down"></i></td>
+                          <td><label class="badge badge-danger">{{ user['tel_mob'] }}</label></td>
                         </tr>
                         {% endfor %}
                       </tbody>

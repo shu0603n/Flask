@@ -17,13 +17,11 @@
         <div class="row">
           
 
-          <div class="col-md-8 grid-margin stretch-card">
+          <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">顧客情報</h4>
-                <form name="kokyaku_update_form" action="/kokyaku_update" method="POST">
-
-                  <input type="hidden" name="kokyaku_id" value="{{ kokyaku['kokyaku_id'] }}" required />
+                <form name="user_update_form" action="/user_update" method="POST">
 
                   <p class="card-description">
                     基本情報
@@ -33,7 +31,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">名前(性)</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_m" value="{{ kokyaku['name_m'] }}" required />
+                          <input type="text" class="form-control" name="name_m" value="{{ user['name_m'] }}" required />
                         </div>
                       </div>
                     </div>
@@ -41,7 +39,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">名前(名)</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_s" value="{{ kokyaku['name_s'] }}" required />
+                          <input type="text" class="form-control" name="name_s" value="{{ user['name_s'] }}" required />
                         </div>
                       </div>
                     </div>
@@ -51,7 +49,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">名前カナ(性)</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_mk" value="{{ kokyaku['name_mk'] }}" />
+                          <input type="text" class="form-control" name="name_mk" value="{{ user['name_mk'] }}" />
                         </div>
                       </div>
                     </div>
@@ -59,7 +57,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">名前カナ(名)</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_sk" value="{{ kokyaku['name_sk'] }}" />
+                          <input type="text" class="form-control" name="name_sk" value="{{ user['name_sk'] }}" />
                         </div>
                       </div>
                     </div>
@@ -90,7 +88,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">生年月日</label>
                         <div class="col-sm-9">
-                          <input class="form-control" placeholder="dd/mm/yyyy" name="seinen_dt"  value=""/>
+                         <input class="form-control" placeholder="yyyy/mm/dd" name="seinen_dt"  value="{{ user['seinen_dt'] }}"/>
                         </div>
                         
                       </div>
@@ -102,7 +100,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">固定電話</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel" value="{{ kokyaku['tel'] }}" />
+                          <input type="text" class="form-control" name="tel" value="{{ user['tel'] }}" />
                         </div>
                       </div>
                     </div>
@@ -110,7 +108,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">携帯電話</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel_mob" value="{{ kokyaku['tel_mob'] }}" />
+                          <input type="text" class="form-control" name="tel_mob" value="{{ user['tel_mob'] }}" />
                         </div>
                       </div>
                     </div>
@@ -121,7 +119,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">メールアドレス</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="email" value="{{ kokyaku['email'] }}" />
+                          <input type="text" class="form-control" name="email" value="{{ user['email'] }}" />
                         </div>
                       </div>
                     </div>
@@ -140,7 +138,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">郵便番号</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="yubin" value="{{ kokyaku['yubin'] }}" />
+                          <input type="text" class="form-control" name="yubin" value="{{ user['yubin'] }}" />
                         </div>
                       </div>
                     </div>
@@ -166,7 +164,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">市区町村</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho2" value="{{ kokyaku['jusho2'] }}" />
+                          <input type="text" class="form-control" name="jusho2" value="{{ user['jusho2'] }}" />
                         </div>
                       </div>
                     </div>
@@ -174,7 +172,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">番地</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho3" value="{{ kokyaku['jusho3'] }}" />
+                          <input type="text" class="form-control" name="jusho3" value="{{ user['jusho3'] }}" />
                         </div>
                       </div>
                     </div>
@@ -185,7 +183,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">部屋番号</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho4" value="{{ kokyaku['jusho4'] }}" />
+                          <input type="text" class="form-control" name="jusho4" value="{{ user['jusho4'] }}" />
                         </div>
                       </div>
                     </div>
@@ -193,10 +191,35 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">メモ</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="memo" value="{{ kokyaku['memo'] }}" />
+                          <input type="text" class="form-control" name="memo" value="{{ user['memo'] }}" />
                         </div>
                       </div>
                     </div>
+                  </div>
+                  
+                  <p class="card-description">
+                    管理情報
+                  </p>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">ユーザーID</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="user_id" value="{{ user['user_id'] }}" required />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">パスワード</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="password" value="{{ user['password'] }}" required />
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
 
                   <div class="template-demo text-center">
@@ -204,134 +227,6 @@
                   </div>
   
                 </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 d-flex align-items-stretch">
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body cente">
-                    <h4 class="card-title">顧客情報一覧 <label class="badge badge-danger">{{ sum_cnt }}</label></h4>
-                    
-
-                    <p class="card-description">
-                      Add class <code>.table-hover</code>
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>来店日</th>
-                            <th>メニュー</th>
-                            <th>金額</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for rireki in kokyakuRireki %}
-                          <tr>
-                            <td>{{ rireki['start_dt'] }}</td>
-                            <td>{{ rireki['menu_nm'] }}</td>
-                            <td> {{ rireki['menu_kg'] }}円</td>
-                          </tr>
-                          {% endfor %}
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">顧客履歴登録</h4>
-                    <p class="card-description">
-                      基本情報
-                    </p>
-                    <form name="kokyaku_rireki_form" action="/kokyaku_rireki_insert" method="POST">
-
-                      <input type="hidden" name="kokyaku_id" value="{{ kokyaku['kokyaku_id'] }}" required />
-
-                      <div class="row">
-                        <div class="col-m-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">来店日</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" name="start_dt"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-m-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">終了日</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" name="end_dt"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">メニュー</label> 
-                            <div class="col-sm-9">
-                              <select class="form-control" name="menu_id">
-                                <option value="0"></option>
-                                <option value="1">のんびりプラン</option>
-                                <option value="2">わくわくプラン</option>
-                                <option value="3">最強プラン</option>
-                                <option value="4">ドキドキプラン</option>
-                                <option value="5">ゴージャスプラン</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">ご利用人数</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" name="ninzu"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="template-demo text-center">
-                        <button type="button" class="btn btn-primary btn-md btn-fw">新規登録</button>
-                      </div>
-
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">年別来店回数</h4>
-                <canvas id="barChart"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">月別来店回数</h4>
-                <canvas id="lineChart"></canvas>
               </div>
             </div>
           </div>

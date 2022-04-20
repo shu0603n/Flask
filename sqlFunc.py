@@ -9,6 +9,10 @@ class SqlFunc:
         sql = "select * from u_data order by user_id"
         return sql
 
+    def selectUser(user_id):
+        sql = "select u_data.* , u_pass,password from u_data inner join u_pass on u_data.user_id = u_pass.user_id where u_data.user_id = '%s'" % (user_id)
+        return sql
+
     def selectKokyakuList():
         sql = "select * from k_data order by kokyaku_id"
         return sql
@@ -21,17 +25,17 @@ class SqlFunc:
         sql = '''
             select
                 k_rireki.start_dt
-                , menu.menu_kg
+                , p_menu.menu_kg
                 , k_data.name_m
                 , k_data.name_s
-                , menu.menu_nm
+                , p_menu.menu_nm
                 , k_rireki.ninzu 
             from
                 k_rireki 
                 inner join k_data 
                     on k_rireki.kokyaku_id = k_data.kokyaku_id 
-                inner join menu 
-                    on k_rireki.menu_id = menu.menu_id
+                inner join p_menu 
+                    on k_rireki.menu_id = p_menu.menu_id
         '''
         return sql
 
@@ -39,12 +43,12 @@ class SqlFunc:
         sql = '''
             select
                 k_rireki.*
-                , menu.menu_nm
-                , menu.menu_kg 
+                , p_menu.menu_nm
+                , p_menu.menu_kg 
             from
                 k_rireki 
-                inner join menu 
-                    on k_rireki.menu_id = menu.menu_id 
+                inner join p_menu 
+                    on k_rireki.menu_id = p_menu.menu_id 
             where
                 kokyaku_id = '%s'
         '''% (kokyaku_id)
@@ -135,6 +139,32 @@ class SqlFunc:
         '''% (kokyaku_id,start_dt,end_dt,menu_id,ninzu)
 
         return sql
+
+    def updateUserData(name_m,name_s,name_mk,name_sk,seinen_dt,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,user_id):
+        sql = '''
+            update u_data 
+            set
+                name_m = '%s'
+                , name_s = '%s'
+                , name_mk = '%s'
+                , name_sk = '%s'
+                , seinen_dt = '%s'::date
+                , jusho1 = '%s'
+                , jusho2 = '%s'
+                , jusho3 = '%s'
+                , jusho4 = '%s'
+                , yubin = '%s'
+                , email = '%s'
+                , tel = '%s'
+                , tel_mob = '%s'
+                , memo = '%s'
+            where
+                user_id = '%s'
+        '''% (name_m,name_s,name_mk,name_sk,seinen_dt,jusho1,jusho2,jusho3,jusho4,yubin,email,tel,tel_mob,memo,user_id)
+
+        return sql
+
+
 
         
 

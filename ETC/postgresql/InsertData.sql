@@ -28,3 +28,5 @@ INSERT INTO p_menu VALUES(1, 'のんびりプラン', 20000, 'test');
 INSERT INTO k_rireki VALUES('murai', '2019/05/09'::date, '2019/05/012'::date, 1, 2, 'test');
 
 COMMIT;
+
+INSERT INTO u_data VALUES(murai, 'テスト', '太郎', 'ﾃｽﾄ', 'ﾀﾛｳ',27,'1994/06/03'::date,'男','0660001', '札幌市', '中央区', '北５条','1-8', 'test@test.jp', '0120202252', '09095219336', 'テストテスト');
