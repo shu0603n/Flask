@@ -72,12 +72,14 @@ def index():
         #SQLを実行し戻り値として結果を受け取る
         res = db.select_execute(con, sql)
         
+        
         if len(res) != 0:
             print("ユーザー情報あり")
             #dashboard.htmlに遷移
             session.permanent = True  
             user = request.form.get("id") 
             session["id"] = user 
+            session["name"] = '村井俊介'
             return redirect(url_for("login"))
 
         else:
