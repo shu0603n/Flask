@@ -2,7 +2,16 @@ class SqlFunc:
 
     
     def selectPassword(user_id, password):
-        sql = "select * from u_pass WHERE user_id = '%s'  AND password = '%s'" % (user_id, password)
+        sql = '''
+            select 
+                u_pass.user_id 
+                , concat(u_data.name_m,' ',u_data.name_s) as user_nm 
+            from u_pass 
+            left join u_data
+                on u_pass.user_id = u_data.user_id 
+            where 
+                u_pass.user_id = '%s' and u_pass.password = '%s'
+        ''' % (user_id, password)
         return sql
 
     def selectUserList():
@@ -10,7 +19,15 @@ class SqlFunc:
         return sql
 
     def selectUser(user_id):
-        sql = "select u_data.* , u_pass,password from u_data inner join u_pass on u_data.user_id = u_pass.user_id where u_data.user_id = '%s'" % (user_id)
+        sql = '''
+            select 
+                u_data.* 
+                , u_pass,password 
+            from u_data 
+            inner join 
+                u_pass on u_data.user_id = u_pass.user_id 
+            where u_data.user_id = '%s'
+        ''' % (user_id)
         return sql
 
     def selectKokyakuList():

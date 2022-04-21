@@ -93,17 +93,22 @@ def index():
             #dashboard.htmlに遷移
             session.permanent = True  
             user = request.form.get("id") 
-            session["user_id"] = user 
-            session["name"] = '村井俊介'
-            return redirect(url_for("login"))
+            session["user_id"] = res[0] 
+            # session["user_nm"] = res[1] 
+
+            # return redirect(url_for("login"))
         else:
-            #不一致のメッセージをindex.htmlに返す
-            message='パスワードが一致しませんでした'
-            return render_template('pages/login.html',user_id=user_id,message=message)
+            session.pop('user_id',None)
+            session.clear()
+        #     #不一致のメッセージをindex.htmlに返す
+        #     message='パスワードが一致しませんでした'
+        #     return render_template('pages/login.html',user_id=user_id,message=message)
+
+        return redirect(url_for("login"))
    
     else:
         # GETの場合
-        if "id" in session: 
+        if "user_id" in session: 
             return redirect(url_for("login"))
 
     return render_template("pages/login.html",user_id=null) 
@@ -112,9 +117,9 @@ def index():
 @app.route("/login",methods=["GET", "POST"])
 def login():
 
-    if "id" in session: 
+    if "user_id" in session: 
         print("sessionあり")
-        return render_template("index.html", user_id=session["id"])
+        return render_template("index.html", user_id=session["user_id"])
     print("sessionなし")
     message='パスワードが一致しませんでした'
     return render_template('pages/login.html',user_id="",message=message)
@@ -122,8 +127,8 @@ def login():
 
 @app.route("/logout", methods=["GET"])
 def logout():
-    if "id" in session: 
-        session.pop('id',None)
+    if "user_id" in session: 
+        session.pop('user_id',None)
         session.clear()
         return redirect("/")
 
