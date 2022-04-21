@@ -43,7 +43,7 @@ git pull heroku master
 
 heroku releases
 #最終動作確認
-heroku rollback v38
+heroku rollback v48
 
 '''
 #heroku更新
@@ -117,7 +117,7 @@ def login():
         return render_template("index.html", user_id=session["id"])
     print("sessionなし")
     message='パスワードが一致しませんでした'
-    return render_template('login.html',user_id="",message=message)
+    return render_template('pages/login.html',user_id="",message=message)
 
 
 @app.route("/logout", methods=["GET"])
