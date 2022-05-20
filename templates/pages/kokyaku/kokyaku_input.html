@@ -22,45 +22,42 @@
                 <h4 class="card-title">顧客情報</h4>
                 <form name="kokyaku_insert_form" action="/kokyaku_insert" method="POST">
 
+                  <input type="hidden" name="kokyaku_id" value="" required />
+
                   <p class="card-description">
                     基本情報
                   </p>
+
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前(性)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_m" value="" required />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前(性)</label>
+                        <input type="tel" class="form-control" placeholder="名前(性)" name="name_m" value="">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前(名)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_s" value="" required />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前(名)</label>
+                        <input type="tel" class="form-control" placeholder="名前(名)" name="name_s" value="">
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前カナ(性)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_mk" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前カナ(性)</label>
+                        <input type="tel" class="form-control" placeholder="名前カナ(性)" name="name_mk" value="">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前カナ(名)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_sk" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前カナ(名)</label>
+                        <input type="tel" class="form-control" placeholder="名前カナ(名)" name="name_sk" value="">
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group row">
@@ -68,7 +65,7 @@
                         <div class="col-sm-4">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                              <input type="radio" class="form-check-input" name="gender" id="membershipRadios1" value="男" checked>
                               男性
                             </label>
                           </div>
@@ -76,102 +73,132 @@
                         <div class="col-sm-5">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                              <input type="radio" class="form-check-input" name="gender" id="membershipRadios2" value="女">
                               女性
                             </label>
                           </div>
                         </div>
                       </div>
                     </div>
+                    
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">生年月日</label>
-                        <div class="col-sm-9">
-                          <input class="form-control" placeholder="dd/mm/yyyy" name="seinen_dt"  value=""/>
-                        </div>
-                        
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">生年月日</label>
+                        <input type="date" class="form-control" placeholder="yyyy/mm/dd" name="seinen_dt" value="">
                       </div>
                     </div>
+                    
                   </div>
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">固定電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">固定電話</label>
+                        <input type="tel" class="form-control" placeholder="固定電話" name="tel" value="">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">携帯電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel_mob" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">携帯電話</label>
+                        <input type="tel" class="form-control" placeholder="携帯電話" name="tel_mob" value="">
                       </div>
                     </div>
+                    
                   </div>
                   
                   <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">メールアドレス</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="email" value="" />
-                        </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">メールアドレス</label>
+                        <input type="email" class="form-control" placeholder="メールアドレス" name="email" value="">
                       </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">携帯電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" />
-                        </div>
-                      </div>
-                    </div> -->
+ 
                   </div>
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">郵便番号</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="yubin" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">郵便番号</label>
+                        <input type="text" class="form-control" placeholder="郵便番号" name="yubin" value="">
                       </div>
                     </div>
+                    
+                    
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">都道府県</label>
-                        <div class="col-sm-9">
-                          <select class="form-control">
-                            <option></option>
-                            <option>北海道</option>
-                            <option>東京都</option>
-                            <option>大阪府</option>
-                            <option>愛知県</option>
-                            <option>京都府</option>
-                          </select>
-                        </div>
+                      <div class="form-group">
+                        <label class="exampleInputUsername1">都道府県</label> 
+                        <select class="form-control" name="menu_id">
+                          <option value="0"></option>
+                          <option value="1">北海道</option>
+                          <option value="2">東京都</option>
+                          <option value="3">大阪府</option>
+                          <option value="4">愛知県</option>
+                          <option value="5">京都府</option>
+                        </select> 
                       </div>
+                      
                     </div>
                   </div>  
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">市区町村</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho2" value="" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">市区町村</label>
+                        <input type="text" class="form-control" placeholder="市区町村" name="jusho2" value="">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">番地</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho3" value="" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">番地</label>
+                        <input type="text" class="form-control" placeholder="番地" name="jusho3" value="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">建物名・部屋番号</label>
+                        <input type="text" class="form-control" placeholder="建物名・部屋番号" name="jusho4" value="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">備考</label>
+                        <input type="text" class="form-control" placeholder="備考" name="memo" value="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="card-description">
+                    SNS
+                  </p>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Instagram</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Instagram" aria-label="Instagram">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Twitter</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Twitter" aria-label="Twitter">
                         </div>
                       </div>
                     </div>
@@ -179,33 +206,42 @@
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">部屋番号</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho4" value="" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Facebook</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Facebook" aria-label="Facebook">
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">メモ</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="memo" value="" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">LINE</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="LINE" aria-label="LINE">
                         </div>
                       </div>
                     </div>
                   </div>
 
+ 
+
                   <div class="template-demo text-center">
-                    <button type="button" class="btn btn-primary btn-md btn-fw">新規登録</button>
+                    <button type="submit" class="btn btn-success btn-md btn-fw">更新</button>
                   </div>
   
                 </form>
               </div>
             </div>
           </div>
-          
+
         </div>
+        
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:../../partials/_footer.html -->

@@ -69,7 +69,7 @@
                                     <tbody>
                                       {% for uriage in uriageList %}
                                       <tr>
-                                        <td><a href="/uriage_update/{{ uriage['uriage_id'] }}">{{ uriage['start_dt'] }}</a></td>
+                                        <td>{{ uriage['uriage_id'] }}<a href="/uriage_update/{{ uriage['uriage_id'] }}">{{ uriage['start_dt'] }}</a></td>
                                         <td>{{ uriage['name_m'] }} {{ uriage['name_s'] }}</td>
                                         <td class="text-danger">{{ uriage['menu_nm'] }}<i class="ti-arrow-down"></i></td>
                                         <td><label class="badge badge-danger">{{ uriage['menu_kg'] }}</label></td>

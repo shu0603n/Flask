@@ -1,0 +1,1 @@
+heroku pg:psql postgresql-silhouetted-72488 --app q-system-origin

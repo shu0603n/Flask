@@ -15,7 +15,6 @@
     <div class="main-panel">        
       <div class="content-wrapper">
         <div class="row">
-          
 
           <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
@@ -28,42 +27,37 @@
                   <p class="card-description">
                     基本情報
                   </p>
+
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前(性)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_m" value="{{ kokyaku['name_m'] }}" required />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前(性)</label>
+                        <input type="tel" class="form-control" placeholder="名前(性)" name="name_m" value="{{ kokyaku['name_m'] }}">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前(名)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_s" value="{{ kokyaku['name_s'] }}" required />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前(名)</label>
+                        <input type="tel" class="form-control" placeholder="名前(名)" name="name_s" value="{{ kokyaku['name_s'] }}">
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前カナ(性)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_mk" value="{{ kokyaku['name_mk'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前カナ(性)</label>
+                        <input type="tel" class="form-control" placeholder="名前カナ(性)" name="name_mk" value="{{ kokyaku['name_sk'] }}">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">名前カナ(名)</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_sk" value="{{ kokyaku['name_sk'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">名前カナ(名)</label>
+                        <input type="tel" class="form-control" placeholder="名前カナ(名)" name="name_sk" value="{{ kokyaku['name_sk'] }}">
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group row">
@@ -71,7 +65,7 @@
                         <div class="col-sm-4">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                              <input type="radio" class="form-check-input" name="gender" id="membershipRadios1" value="男" checked>
                               男性
                             </label>
                           </div>
@@ -79,102 +73,132 @@
                         <div class="col-sm-5">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                              <input type="radio" class="form-check-input" name="gender" id="membershipRadios2" value="女">
                               女性
                             </label>
                           </div>
                         </div>
                       </div>
                     </div>
+                    
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">生年月日</label>
-                        <div class="col-sm-9">
-                          <input class="form-control" placeholder="dd/mm/yyyy" name="seinen_dt"  value=""/>
-                        </div>
-                        
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">生年月日</label>
+                        <input type="date" class="form-control" placeholder="yyyy/mm/dd" name="seinen_dt" value="{{ kokyaku['seinen_dt'] }}">
                       </div>
                     </div>
+                    
                   </div>
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">固定電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel" value="{{ kokyaku['tel'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">固定電話</label>
+                        <input type="tel" class="form-control" placeholder="固定電話" name="tel" value="{{ kokyaku['tel'] }}">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">携帯電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="tel_mob" value="{{ kokyaku['tel_mob'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">携帯電話</label>
+                        <input type="tel" class="form-control" placeholder="携帯電話" name="tel_mob" value="{{ kokyaku['tel_mob'] }}">
                       </div>
                     </div>
+                    
                   </div>
                   
                   <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">メールアドレス</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="email" value="{{ kokyaku['email'] }}" />
-                        </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">メールアドレス</label>
+                        <input type="email" class="form-control" placeholder="メールアドレス" name="email" value="{{ kokyaku['email'] }}">
                       </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">携帯電話</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" />
-                        </div>
-                      </div>
-                    </div> -->
+ 
                   </div>
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">郵便番号</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="yubin" value="{{ kokyaku['yubin'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">郵便番号</label>
+                        <input type="text" class="form-control" placeholder="郵便番号" name="yubin" value="{{ kokyaku['yubin'] }}">
                       </div>
                     </div>
+                    
+                    
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">都道府県</label>
-                        <div class="col-sm-9">
-                          <select class="form-control">
-                            <option></option>
-                            <option>北海道</option>
-                            <option>東京都</option>
-                            <option>大阪府</option>
-                            <option>愛知県</option>
-                            <option>京都府</option>
-                          </select>
-                        </div>
+                      <div class="form-group">
+                        <label class="exampleInputUsername1">都道府県</label> 
+                        <select class="form-control" name="menu_id">
+                          <option value="0"></option>
+                          <option value="1">北海道</option>
+                          <option value="2">東京都</option>
+                          <option value="3">大阪府</option>
+                          <option value="4">愛知県</option>
+                          <option value="5">京都府</option>
+                        </select> 
                       </div>
+                      
                     </div>
                   </div>  
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">市区町村</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho2" value="{{ kokyaku['jusho2'] }}" />
-                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">市区町村</label>
+                        <input type="text" class="form-control" placeholder="市区町村" name="jusho2" value="{{ kokyaku['jusho2'] }}">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">番地</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho3" value="{{ kokyaku['jusho3'] }}" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">番地</label>
+                        <input type="text" class="form-control" placeholder="番地" name="jusho3" value="{{ kokyaku['jusho3'] }}">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">建物名・部屋番号</label>
+                        <input type="text" class="form-control" placeholder="建物名・部屋番号" name="jusho4" value="{{ kokyaku['jusho4'] }}">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">備考</label>
+                        <input type="text" class="form-control" placeholder="備考" name="memo" value="{{ kokyaku['memo'] }}">
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="card-description">
+                    SNS
+                  </p>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Instagram</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Instagram" aria-label="Instagram">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Twitter</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Twitter" aria-label="Twitter">
                         </div>
                       </div>
                     </div>
@@ -182,22 +206,30 @@
 
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">部屋番号</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="jusho4" value="{{ kokyaku['jusho4'] }}" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Facebook</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Facebook" aria-label="Facebook">
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">メモ</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="memo" value="{{ kokyaku['memo'] }}" />
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">LINE</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="LINE" aria-label="LINE">
                         </div>
                       </div>
                     </div>
                   </div>
+
+ 
 
                   <div class="template-demo text-center">
                     <button type="submit" class="btn btn-success btn-md btn-fw">更新</button>
@@ -229,13 +261,21 @@
                           </tr>
                         </thead>
                         <tbody>
-                          {% for rireki in kokyakuRireki %}
-                          <tr>
-                            <td>{{ rireki['start_dt'] }}</td>
-                            <td>{{ rireki['menu_nm'] }}</td>
-                            <td> {{ rireki['menu_kg'] }}円</td>
-                          </tr>
-                          {% endfor %}
+                          {% if sum_cnt != 0  %}
+                            {% for rireki in kokyakuRireki %}
+                            <tr>
+                              <td>{{ rireki['start_dt'] }}</td>
+                              <td>{{ rireki['menu_nm'] }}</td>
+                              <td>{{ rireki['menu_kg'] }}円</td>
+                            </tr>
+                            {% endfor %}
+                          {% else %}
+                            <tr>
+                              <td>来店記録はありません。</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          {% endif %}
                           
                         </tbody>
                       </table>
@@ -255,59 +295,58 @@
                       <input type="hidden" name="kokyaku_id" value="{{ kokyaku['kokyaku_id'] }}" required />
 
                       <div class="row">
-                        <div class="col-m-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">来店日</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" name="start_dt"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-m-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">終了日</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" name="end_dt"/>
-                            </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">来店日</label>
+                            <input type="date" class="form-control" placeholder="yyyy/mm/dd" name="start_dt"">
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-md-12">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">メニュー</label> 
-                            <div class="col-sm-9">
-                              <select class="form-control" name="menu_id">
-                                <option value="0"></option>
-                                <option value="1">のんびりプラン</option>
-                                <option value="2">わくわくプラン</option>
-                                <option value="3">最強プラン</option>
-                                <option value="4">ドキドキプラン</option>
-                                <option value="5">ゴージャスプラン</option>
-                              </select>
-                            </div>
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">終了日</label>
+                            <input type="date" class="form-control" placeholder="yyyy/mm/dd" name="end_dt">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="exampleInputUsername1">メニュー</label> 
+                            <select class="form-control" name="menu_id">
+                              <option value="0"></option>
+                              <option value="1">のんびりプラン</option>
+                              <option value="2">わくわくプラン</option>
+                              <option value="3">最強プラン</option>
+                              <option value="4">ドキドキプラン</option>
+                              <option value="5">ゴージャスプラン</option>
+                            </select> 
+                          </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">ご利用人数</label>
+                            <input type="text" class="form-control" placeholder="ご利用人数" name="ninzu">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="exampleInputUsername1">部屋番号</label>
+                            <input type="text" class="form-control" placeholder="部屋番号" name="">
                           </div>
                         </div>
                       </div>
                       
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">ご利用人数</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" name="ninzu"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
                       <div class="template-demo text-center">
-                        <button type="button" class="btn btn-primary btn-md btn-fw">新規登録</button>
+                        <button type="submit" class="btn btn-primary btn-md btn-fw">新規登録</button>
                       </div>
 
                     </form>
@@ -318,6 +357,10 @@
             </div>
           </div>
 
+        </div>
+
+        
+        <div class="row">
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -335,8 +378,8 @@
               </div>
             </div>
           </div>
-
-        </div>
+        </div>  
+      
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:../../partials/_footer.html -->

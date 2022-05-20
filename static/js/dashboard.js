@@ -369,10 +369,10 @@
     if ($("#marketingOverview").length) {
       var marketingOverviewChart = document.getElementById("marketingOverview").getContext('2d');
       var marketingOverviewData = {
-          labels: ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+          labels: ["1月","2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
           datasets: [{
               label: 'Last week',
-              data: [110, 220, 200, 190, 220, 110, 210, 110, 205, 202, 201, 150],
+              data: LastWeekData,
               backgroundColor: "#52CDFF",
               borderColor: [
                   '#52CDFF',
@@ -382,7 +382,7 @@
               
           },{
             label: 'This week',
-            data: [215, 290, 210, 250, 290, 230, 290, 210, 280, 220, 190, 300],
+            data: ThisWeekData,
             backgroundColor: "#1F3BB3",
             borderColor: [
                 '#1F3BB3',
@@ -461,7 +461,7 @@
     if ($("#marketingOverview-dark").length) {
       var marketingOverviewChartDark = document.getElementById("marketingOverview-dark").getContext('2d');
       var marketingOverviewDataDark = {
-          labels: ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        labels: ["1月","2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
           datasets: [{
               label: 'Last week',
               data: [110, 220, 200, 190, 220, 110, 210, 110, 205, 202, 201, 150],

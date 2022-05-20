@@ -5,8 +5,11 @@ from pandas import isnull
 from sqlalchemy import null
 import database
 import sqlFunc
+import function
 
 from flask import send_from_directory
+
+
 #クラスインスタンス化
 db = database.DataBase
 query =sqlFunc.SqlFunc
@@ -56,9 +59,13 @@ git heroku -avv
 app = Flask(__name__)
 # セッションに格納する情報を暗号化
 app.secret_key = 'abcdefghijklmn'
-# 3分操作がなければセッションを破棄する
-app.permanent_session_lifetime = timedelta(minutes=3) 
+# 10分操作がなければセッションを破棄する
+app.permanent_session_lifetime = timedelta(minutes=5) 
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=5)
 @app.errorhandler(403)
 def page_not_found(error):
     return render_template('pages/error/403.html'), 403
@@ -71,7 +78,7 @@ def page_not_found(error):
 @app.errorhandler(505)
 def page_not_found(error):
     return render_template('pages/error/505.html'), 505
-    
+
 
 @app.route('/',methods=["GET", "POST"])
 def index():
@@ -93,7 +100,7 @@ def index():
             #dashboard.htmlに遷移
             session.permanent = True  
             user = request.form.get("id") 
-            session["user_id"] = res[0] 
+            session["user_id"] = res[0][0]
             # session["user_nm"] = res[1] 
 
             # return redirect(url_for("login"))
@@ -113,7 +120,7 @@ def index():
 
     return render_template("pages/login.html",user_id=null) 
 
-    
+
 @app.route("/login",methods=["GET", "POST"])
 def login():
 
@@ -130,7 +137,8 @@ def logout():
     if "user_id" in session: 
         session.pop('user_id',None)
         session.clear()
-        return redirect("/")
+        
+    return redirect("/")
 
 
 @app.route("/dashboard")
@@ -141,7 +149,7 @@ def dashboard():
     #SQLを実行し戻り値として結果を受け取る
     res = db.select_execute(con, sql)
 
-    return render_template('index.html',uriageList=res)
+    return render_template('index.html',uriageList=res,user_id=session["user_id"])
 
 
 @app.route("/kokyaku_list")
@@ -182,23 +190,26 @@ def kokyaku_kokyaku_id(kokyaku_id):
 @app.route("/kokyaku_update",methods=["GET", "POST"])
 def kokyaku_update():
    
-    kokyaku_id  = request.form.get("kokyaku_id")
     name_m      = request.form.get("name_m")
     name_s      = request.form.get("name_s")
     name_mk     = request.form.get("name_mk")
     name_sk     = request.form.get("name_sk")
-    tel         = request.form.get("tel")
-    tel_mob     = request.form.get("tel_mob")
-    email       = request.form.get("email")
+    seinen_dt   = request.form.get("seinen_dt")
+    age         = ''#request.form.get("age")
+    gender      = ''#request.form.get("gender")
     yubin       = request.form.get("yubin")
     jusho1      = request.form.get("jusho1")
     jusho2      = request.form.get("jusho2")
     jusho3      = request.form.get("jusho3")
     jusho4      = request.form.get("jusho4")
+    email       = request.form.get("email")
+    tel         = request.form.get("tel")
+    tel_mob     = request.form.get("tel_mob")
     memo        = request.form.get("memo")
-
+    kokyaku_id  = request.form.get("kokyaku_id")
+        
     #変更をコミット
-    sql = query.updateKokyakuData(name_m,name_s,name_mk,name_sk,jusho1,yubin,jusho2,jusho3,jusho4,email,tel,tel_mob,memo,kokyaku_id)
+    sql = query.updateKokyakuData(name_m,name_s,name_mk,name_sk,seinen_dt,age,gender,yubin,jusho1,jusho2,jusho3,jusho4,email,tel,tel_mob,memo,kokyaku_id)
     db.updatet_execute(con, sql)
 
     sql = query.selectKokyakuList()
@@ -216,23 +227,25 @@ def kokyaku_input():
 @app.route("/kokyaku_insert",methods=["GET", "POST"])
 def kokyaku_insert():
 
-    kokyaku_id  ='nextval(text)'
     name_m      = request.form.get("name_m")
     name_s      = request.form.get("name_s")
     name_mk     = request.form.get("name_mk")
     name_sk     = request.form.get("name_sk")
-    tel         = request.form.get("tel")
-    tel_mob     = request.form.get("tel_mob")
-    email       = request.form.get("email")
+    seinen_dt   = request.form.get("seinen_dt")
+    age         = ''#request.form.get("age")
+    gender      = ''#request.form.get("gender")
     yubin       = request.form.get("yubin")
     jusho1      = request.form.get("jusho1")
     jusho2      = request.form.get("jusho2")
     jusho3      = request.form.get("jusho3")
     jusho4      = request.form.get("jusho4")
+    email       = request.form.get("email")
+    tel         = request.form.get("tel")
+    tel_mob     = request.form.get("tel_mob")
     memo        = request.form.get("memo")
 
     #変更をコミット
-    sql = query.insertKokyakuData(name_m,name_s,name_mk,name_sk,yubin,jusho1,jusho2,jusho3,jusho4,email,tel,tel_mob,memo)
+    sql = query.insertKokyakuData(name_m,name_s,name_mk,name_sk,seinen_dt,age,gender,yubin,jusho1,jusho2,jusho3,jusho4,email,tel,tel_mob,memo)
     print(sql)
     db.insert_execute(con, sql)
 
@@ -244,6 +257,7 @@ def kokyaku_insert():
 
 @app.route("/kokyaku_rireki_insert",methods=["GET", "POST"])
 def kokyaku_rireki_insert():
+    print(kokyaku_rireki_insert)
 
     kokyaku_id  = request.form.get("kokyaku_id")
     start_dt    = request.form.get("start_dt")
